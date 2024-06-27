@@ -31,21 +31,21 @@ export async function sendMail({
   });
 }
 
-export async function sendActivationMail(email: string, token: string) {
-  renderFile(
-    path.resolve(process.cwd(), "templates/account-activation.ejs"),
-    {
-      activationLink: `${process.env.CLIENT_HOST}:${process.env.CLIENT_PORT}/auth/activate-account?token=${token}`,
-    },
-    async (err, template) => {
-      await sendMail({
-        to:
-          process.env.NODE_ENV !== "production"
-            ? "skrnsabary27@gmail.com"
-            : email,
-        subject: "Account Activation",
-        content: template,
-      });
-    }
-  );
-}
+// export async function sendActivationMail(email: string, token: string) {
+//   renderFile(
+//     path.resolve(process.cwd(), "templates/account-activation.ejs"),
+//     {
+//       activationLink: `${process.env.CLIENT_HOST}:${process.env.CLIENT_PORT}/auth/activate-account?token=${token}`,
+//     },
+//     async (err, template) => {
+//       await sendMail({
+//         to:
+//           process.env.NODE_ENV !== "production"
+//             ? "skrnsabary27@gmail.com"
+//             : email,
+//         subject: "Account Activation",
+//         content: template,
+//       });
+//     }
+//   );
+// }

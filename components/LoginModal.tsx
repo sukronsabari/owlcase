@@ -57,14 +57,14 @@ export function LoginModal({
             <Icons.google className="w-5 h-5 mr-3 inline-block" />
             Continue with google
           </Button>
-          <Button
+          {/* <Button
             variant="outline"
             onClick={() => signIn("google", { callbackUrl })}
             className="w-full justify-start"
           >
             <Icons.github className="w-5 h-5 mr-3 inline-block" />
             Continue with github
-          </Button>
+          </Button> */}
         </div>
         <p className="mt-4 text-muted-foreground text-xs">
           By creating an account, you agree to our{" "}
