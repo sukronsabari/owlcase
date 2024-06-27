@@ -1,0 +1,206 @@
+datasource db {
+    provider  = "postgresql"
+    url       = env("DATABASE_URL")
+    directUrl = env("DATABASE_URL_UNPOOLED")
+}
+
+generator client {
+    provider        = "prisma-client-js"
+    previewFeatures = ["driverAdapters"]
+}
+
+enum UserRole {
+    ADMIN
+    USER
+}
+
+enum OrderStatus {
+    FULLFILLED
+    SHIPPED
+    AWAITING_SHIPMENT
+}
+
+model User {
+    id              String            @id @default(cuid())
+    name            String?
+    email           String            @unique
+    emailVerified   DateTime?
+    password        String?
+    image           String?
+    role            UserRole          @default(USER)
+    accounts        Account[]
+    createdAt       DateTime          @default(now())
+    updatedAt       DateTime          @updatedAt
+    orders          Order[]
+    cart            Cart?
+    shippingAddress ShippingAddress[]
+}
+
+model Account {
+    userId            String
+    type              String
+    provider          String
+    providerAccountId String
+    refresh_token     String?
+    access_token      String?
+    expires_at        Int?
+    token_type        String?
+    scope             String?
+    id_token          String?
+    session_state     String?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@id([provider, providerAccountId])
+}
+
+model VerificationToken {
+    email   String
+    token   String
+    expires DateTime
+
+    @@id([email, token])
+}
+
+model CaseColor {
+    id          String       @id @default(cuid())
+    name        String
+    hex         String
+    caseModels  CaseModel[]
+    caseOptions CaseOption[]
+}
+
+model CaseMaterial {
+    id          String       @id @default(cuid())
+    name        String
+    price       Int
+    description String?
+    caseModels  CaseModel[]
+    caseOptions CaseOption[]
+}
+
+model CaseFinish {
+    id          String       @id @default(cuid())
+    name        String
+    price       Int
+    description String?
+    caseModels  CaseModel[]
+    caseOptions CaseOption[]
+}
+
+model CaseModel {
+    id            String         @id @default(cuid())
+    name          String
+    url           String
+    price         Int
+    caseColors    CaseColor[]
+    caseMaterials CaseMaterial[]
+    caseFinishes  CaseFinish[]
+    caseOptions   CaseOption[]
+}
+
+model ImageConfiguration {
+    id              String       @id @default(cuid())
+    width           Int
+    height          Int
+    url             String
+    croppedImageUrl String?
+    caseOptions     CaseOption[]
+}
+
+model CaseOption {
+    id                   String      @id @default(cuid())
+    imageConfigurationId String
+    caseModelId          String
+    caseMaterialId       String
+    caseFinishId         String
+    caseColorId          String
+    cartItems            CartItem[]
+    orderItems           OrderItem[]
+
+    imageConfiguration ImageConfiguration @relation(fields: [imageConfigurationId], references: [id])
+    caseModel          CaseModel          @relation(fields: [caseModelId], references: [id])
+    caseMaterial       CaseMaterial       @relation(fields: [caseMaterialId], references: [id])
+    caseFinish         CaseFinish         @relation(fields: [caseFinishId], references: [id])
+    caseColor          CaseColor          @relation(fields: [caseColorId], references: [id])
+}
+
+model Cart {
+    id        String     @id @default(cuid())
+    userId    String     @unique
+    items     CartItem[]
+    createdAt DateTime   @default(now())
+    updatedAt DateTime   @updatedAt
+
+    user User @relation(fields: [userId], references: [id])
+}
+
+model CartItem {
+    id           String   @id @default(cuid())
+    cartId       String
+    caseOptionId String
+    quantity     Int
+    createdAt    DateTime @default(now())
+    updatedAt    DateTime @updatedAt
+
+    cart       Cart       @relation(fields: [cartId], references: [id], onDelete: Cascade)
+    caseOption CaseOption @relation(fields: [caseOptionId], references: [id])
+}
+
+model Order {
+    id                String      @id @default(cuid())
+    userId            String
+    shippingAddressId String
+    amount            Int
+    isPaid            Boolean     @default(false)
+    status            OrderStatus @default(AWAITING_SHIPMENT)
+    courierCompany    String
+    courierType       String
+    courierInsurance  Int
+    courierRates      Int
+    deliveryType      String
+    courierOrderId    String? // biteship order id
+    waybillId         String? // resi
+    trackingId        String? // tracking biteship
+    createdAt         DateTime    @default(now())
+    updatedAt         DateTime    @updatedAt
+    items             OrderItem[]
+
+    user            User            @relation(fields: [userId], references: [id])
+    shippingAddress ShippingAddress @relation(fields: [shippingAddressId], references: [id])
+}
+
+model OrderItem {
+    id           String   @id @default(cuid())
+    orderId      String
+    caseOptionId String
+    quantity     Int
+    price        Int
+    createdAt    DateTime @default(now())
+    updatedAt    DateTime @default(now())
+
+    order      Order      @relation(fields: [orderId], references: [id], onDelete: Cascade)
+    caseOption CaseOption @relation(fields: [caseOptionId], references: [id])
+}
+
+model ShippingAddress {
+    id            String  @id @default(cuid())
+    userId        String
+    isMainAddress Boolean @default(false)
+    contactName   String
+    phoneNumber   String
+
+    mapAreaId     String
+    addressDetail String
+    province      String
+    city          String
+    district      String
+    postalCode    String
+    createdAt     DateTime @default(now())
+    updatedAt     DateTime @updatedAt
+    orders        Order[]
+    user          User     @relation(fields: [userId], references: [id])
+}

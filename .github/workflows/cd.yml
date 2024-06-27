@@ -1,0 +1,30 @@
+name: Deploy to VPS
+on:
+  push:
+    branches: [main]
+
+jobs:
+  cd:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy using SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: 22
+          script: |
+            cd ~/apps/owlcase
+            git pull origin main
+            git status
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
+            npm install
+            node --max-old-space-size=2048 node_modules/.bin/next build
+            pm2 restart owlcase
