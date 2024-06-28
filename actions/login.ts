@@ -4,7 +4,7 @@ import { z } from "zod";
 import { AuthError } from "next-auth";
 import { loginFormSchema } from "@/schemas/login";
 import { IApiResponse } from "@/types/api-response";
-import { auth, signIn } from "@/auth";
+import { signIn } from "@/auth";
 
 export async function LoginAction(
   payload: z.infer<typeof loginFormSchema>,

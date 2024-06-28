@@ -458,8 +458,8 @@ export default function CheckoutPage() {
                   </Tooltip>
                 </TooltipProvider>
               </div>
-              <div className="h-[200px]">
-                <ScrollArea className="relative h-[200px] overflow-x-auto rounded-none">
+              <div className="min-h-[150px]">
+                <ScrollArea className="relative min-h-[150px] overflow-x-auto rounded-none">
                   <RadioGroup
                     required
                     className="px-4"
@@ -506,7 +506,7 @@ export default function CheckoutPage() {
                 </ScrollArea>
               </div>
             </div>
-            <div className="mt-8">
+            <div className="mt-4">
               <h2 className="font-medium mb-3">Pilih Pengiriman</h2>
               <ScrollArea className="relative h-[200px] overflow-x-auto rounded-none">
                 <div className="flex flex-col gap-4 w-full pt-4">

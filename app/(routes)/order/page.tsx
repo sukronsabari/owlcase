@@ -3,6 +3,7 @@ import { SectionWrapper } from "@/components/SectionWrapper";
 import { Button } from "@/components/ui/button";
 import { prisma } from "@/lib/db";
 import getSession from "@/lib/getSession";
+import { formatPrice } from "@/lib/utils";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 
@@ -50,14 +51,24 @@ export default async function OrderListPage() {
                 className="bg-white shadow-md p-4 w-full max-w-[600px]"
               >
                 <div className="flex justify-between items-center">
-                  <h3 className="font-bold">Order ID: {order.id}</h3>
+                  <h3 className="font-bold">Order No: {order.id}</h3>
                   <Button variant="outline" size="sm">
                     Lacak
                   </Button>
                 </div>
 
-                <p className="mb-6">
-                  Tanggal Order: {order.createdAt.toLocaleDateString()}
+                <div className="flex justify-between mt-1 w-full">
+                  <div className="flex-1">
+                    <p className="text-sm">
+                      Ongkos Kirim: {order.courierRates}
+                    </p>
+                    <p className="text-sm ">
+                      Jumlah Pembayaran: {order.amount + order.courierRates}
+                    </p>
+                  </div>
+                </div>
+                <p className="text-sm text-muted-foreground text-right mb-2">
+                  {order.createdAt.toLocaleDateString()}
                 </p>
                 {order.items.map((item) => (
                   <div
@@ -91,6 +102,18 @@ export default async function OrderListPage() {
                         <p className="capitalize">
                           finishing: {item.caseOption.caseFinish.name}
                         </p>
+                      </div>
+                      <div className="absolute bottom-0 flex items-center justify-between w-full pr-3">
+                        <div className="w-full flex justify-between items-center">
+                          <p className="font-medium">
+                            {formatPrice(
+                              item.caseOption.caseModel.price +
+                                item.caseOption.caseMaterial.price +
+                                item.caseOption.caseFinish.price
+                            )}
+                          </p>
+                          <p>{item.quantity}x</p>
+                        </div>
                       </div>
                     </div>
                   </div>

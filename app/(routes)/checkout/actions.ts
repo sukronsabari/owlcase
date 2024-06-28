@@ -290,11 +290,6 @@ export async function createOrder({
     },
   });
 
-  await prisma.orderItem.deleteMany({
-    where: {},
-  });
-  // await caseOptions.map((caseOpt) => caseOpt.)
-
   const findCart = await prisma.cart.findFirst({
     where: {
       userId: session.user.id,

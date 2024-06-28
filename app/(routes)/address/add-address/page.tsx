@@ -11,10 +11,9 @@ export default async function AddAddressPage() {
     notFound();
   }
 
-  const provinces = await fetchProvinces();
   const addresses = await prisma.shippingAddress.findMany({
     where: { userId: session.user.id },
   });
 
-  return <AddAddress provinces={provinces} totalAddress={addresses.length} />;
+  return <AddAddress totalAddress={addresses.length} />;
 }
