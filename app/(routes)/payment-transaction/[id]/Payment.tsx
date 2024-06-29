@@ -83,7 +83,6 @@ export function Payment({
 }: {
   transactionStatus: TransactionStatus;
 }) {
-  transactionStatus.transaction_status = "capture";
   const bank =
     transactionStatus.va_numbers?.length &&
     transactionStatus.payment_type === "bank_transfer"
