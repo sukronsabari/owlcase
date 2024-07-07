@@ -8,6 +8,8 @@ function generateCentsCurrency(dollars: number) {
 }
 
 async function main() {
+  // console.log(process.env.CASE_DEFAULT_IMG_URL);
+  // return;
   // Buat phoneColors, phoneMaterials, dan phoneFinishes
   const phoneColors = await prisma.caseColor.createManyAndReturn({
     data: [
