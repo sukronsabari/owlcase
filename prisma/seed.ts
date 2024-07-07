@@ -65,10 +65,9 @@ async function main() {
     data: [
       {
         name: "Iphone12",
-        url: "https://utfs.io/f/d3579d39-d738-4982-a2f1-62302b40c0f0-x9a5ja.png", // iphone12.png
+        url: process.env.CASE_DEFAULT_IMG_URL!, // iphone12.png
         price: 35000,
-        edgeImgUrl:
-          "https://utfs.io/f/560e6c8f-d560-4087-9a25-b1f3119b83fa-1fby82.png", // iphone12-bg-edge.png
+        edgeImgUrl: process.env.CASE_DEFAULT_EDGE_IMG_URL!, // iphone12-bg-edge.png
       },
     ],
   });
