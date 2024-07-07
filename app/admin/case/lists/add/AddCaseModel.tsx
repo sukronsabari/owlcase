@@ -1,21 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import Image from "next/image";
-import {
-  Dispatch,
-  SetStateAction,
-  useTransition,
-  useCallback,
-  useState,
-} from "react";
-import { useForm } from "react-hook-form";
+import { useTransition } from "react";
+import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { addCaseModelSchema } from "./schema";
-import { FileRejection, useDropzone } from "react-dropzone";
 import { ImageIcon, MousePointerSquareDashed, RefreshCcw } from "lucide-react";
-import { useUploadThing } from "@/lib/uploadthing";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+import useUploadCaseModelImage from "@/hooks/useUploadCaseModelImage";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -25,13 +19,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { useToast } from "@/components/ui/use-toast";
 import { SectionWrapper } from "@/components/SectionWrapper";
-import useUploadCaseModelImage from "@/hooks/useUploadCaseModelImage";
+
 import { createCaseModel } from "./actions";
-import { useRouter } from "next/navigation";
+import { addCaseModelSchema } from "./schema";
 
 const allowedFiles = {
   "image/png": [".png"],
@@ -116,7 +109,7 @@ export function AddCaseModel() {
           <FormField
             control={form.control}
             name="url"
-            render={({ field }) => (
+            render={({}) => (
               <FormItem>
                 <FormLabel className="font-bold">Case Image</FormLabel>
                 {url ? (
@@ -180,7 +173,7 @@ export function AddCaseModel() {
           <FormField
             control={form.control}
             name="edgeImgUrl"
-            render={({ field }) => (
+            render={({}) => (
               <FormItem>
                 <FormLabel className="font-bold">Case Image Edge</FormLabel>
                 {edgeImgUrl ? (

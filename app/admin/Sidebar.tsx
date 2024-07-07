@@ -1,22 +1,21 @@
 "use client";
 
+import { useState } from "react";
+import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { useNavigationStore } from "@/stores";
 import {
   ChevronDown,
   ChevronUp,
-  CircleArrowLeft,
   Home,
   LogOut,
   Package,
   TabletSmartphone,
   Users,
 } from "lucide-react";
-import { useState } from "react";
-import { useNavigationStore } from "@/stores";
 import { signOut } from "next-auth/react";
-import Link from "next/link";
+
+import { cn } from "@/lib/utils";
 
 interface MenuItem {
   id: number;

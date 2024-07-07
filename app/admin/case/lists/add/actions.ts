@@ -1,11 +1,13 @@
 "use server";
 
-import { auth } from "@/auth";
-import { addCaseModelSchema } from "./schema";
-import { UserRole } from "@prisma/client";
-import { prisma } from "@/lib/db";
-import { z } from "zod";
 import { revalidatePath } from "next/cache";
+import { auth } from "@/auth";
+import { UserRole } from "@prisma/client";
+import { z } from "zod";
+
+import { prisma } from "@/lib/db";
+
+import { addCaseModelSchema } from "./schema";
 
 export async function createCaseModel({
   name,

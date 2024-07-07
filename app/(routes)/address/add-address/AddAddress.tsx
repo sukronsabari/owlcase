@@ -1,30 +1,29 @@
 "use client";
 
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { useCallback, useState, useTransition } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import AsyncSelect from "react-select/async";
+import debounce from "debounce";
+import { useForm } from "react-hook-form";
 import { SingleValue } from "react-select";
+import AsyncSelect from "react-select/async";
+import { z } from "zod";
+
+import { Button } from "@/components/ui/button";
 import {
   Form,
+  FormControl,
   FormField,
   FormItem,
-  FormControl,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useCallback, useState, useTransition } from "react";
-import { Button } from "@/components/ui/button";
-import { SectionWrapper } from "@/components/SectionWrapper";
-import debounce from "debounce";
-
-import { ChevronsUpDown, Check } from "lucide-react";
-
-import { getAddressFromBiteshipAction, saveAddress } from "./actions";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useToast } from "@/components/ui/use-toast";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+import { useToast } from "@/components/ui/use-toast";
+import { SectionWrapper } from "@/components/SectionWrapper";
+
+import { getAddressFromBiteshipAction, saveAddress } from "./actions";
 import { addAddressFormSchema } from "./schema";
 
 export function AddAddress({ totalAddress }: { totalAddress: number }) {
@@ -89,7 +88,8 @@ export function AddAddress({ totalAddress }: { totalAddress: number }) {
           toast({
             title: "Ups, something went wrong!",
             description:
-              "Failed to adding address, please check your connection",
+              "Failed to adding address, please check your connection" ||
+              error.message,
             variant: "destructive",
           });
         });
@@ -159,11 +159,11 @@ export function AddAddress({ totalAddress }: { totalAddress: number }) {
                   : "Masukkan lokasi untuk mencari"
               }
               styles={{
-                control: (base, props) => ({
+                control: (base) => ({
                   ...base,
                   backgroundColor: "hsla(0, 0%, 100%, 1) !important",
                 }),
-                input: (base, props) => ({
+                input: (base) => ({
                   ...base,
                   "& input": {
                     fontFamily: "recursive",
@@ -175,7 +175,7 @@ export function AddAddress({ totalAddress }: { totalAddress: number }) {
                     lineHeight: "40px",
                   },
                 }),
-                placeholder: (base, props) => ({
+                placeholder: (base) => ({
                   ...base,
                   fontSize: "14px !important",
                   fontWeight: "400 !important",

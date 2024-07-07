@@ -1,20 +1,22 @@
 "use client";
 
-import { useState, Dispatch, SetStateAction } from "react";
-import { Plus, X } from "lucide-react";
+import { Dispatch, SetStateAction, useState } from "react";
 import type { CaseColor } from "@prisma/client";
-import { Button } from "@/components/ui/button";
-import { CaseColorInput } from "./CaseColorInput";
-import { ActionAlertDialog } from "@/components/ActionAlertDialog";
-import { deleteCaseColorById } from "./actions";
+import { Plus, X } from "lucide-react";
+
 import { cn } from "@/lib/utils";
-import { useToast } from "@/components/ui/use-toast";
+import { Button } from "@/components/ui/button";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useToast } from "@/components/ui/use-toast";
+import { ActionAlertDialog } from "@/components/ActionAlertDialog";
+
+import { deleteCaseColorById } from "./actions";
+import { CaseColorInput } from "./CaseColorInput";
 
 export function CaseColorList({
   caseColors,

@@ -1,10 +1,12 @@
 "use server";
 
-import { prisma } from "@/lib/db";
-import { z } from "zod";
-import { editAddressFormSchema } from "./schema";
-import { auth } from "@/auth";
 import { revalidatePath } from "next/cache";
+import { auth } from "@/auth";
+import { z } from "zod";
+
+import { prisma } from "@/lib/db";
+
+import { editAddressFormSchema } from "./schema";
 
 export async function editAddressAction({
   id,

@@ -1,9 +1,11 @@
+import { Suspense } from "react";
 import { notFound, redirect } from "next/navigation";
+
 import getSession from "@/lib/getSession";
 import { SectionWrapper } from "@/components/SectionWrapper";
-import { TransactionStatus } from "./type";
+
 import { Payment } from "./Payment";
-import { Suspense } from "react";
+import { TransactionStatus } from "./type";
 
 export default async function PaymentTransactionPage({
   params,

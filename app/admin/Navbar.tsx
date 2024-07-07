@@ -1,8 +1,9 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { useNavigationStore } from "@/stores";
 import { Menu } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
 
 export function Navbar() {
   const [togleIsOpen] = useNavigationStore((state) => [state.toggleIsOpen]);

@@ -1,11 +1,7 @@
-import { Phone } from "@/components/Phone";
-import { SectionWrapper } from "@/components/SectionWrapper";
-import { Button } from "@/components/ui/button";
-import { prisma } from "@/lib/db";
-import getSession from "@/lib/getSession";
-import { formatPrice } from "@/lib/utils";
-import Image from "next/image";
 import { redirect } from "next/navigation";
+
+import getSession from "@/lib/getSession";
+
 import { Orders } from "./Orders";
 
 export default async function OrderListPage() {

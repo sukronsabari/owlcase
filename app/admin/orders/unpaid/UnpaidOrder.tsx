@@ -1,18 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import Image from "next/image";
 import { useMemo, useState } from "react";
+import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import { EllipsisVertical } from "lucide-react";
 
-import { getUnpaidOrders, updateOrderPaidStatus } from "./actions";
-import { cn, formatPrice } from "@/lib/utils";
 import { ORDER_STATUS_PHRASE } from "@/lib/constants";
-
-import { SectionWrapper } from "@/components/SectionWrapper";
-import { Button } from "@/components/ui/button";
+import { cn, formatPrice } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,6 +21,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ActionAlertDialog } from "@/components/ActionAlertDialog";
+import { SectionWrapper } from "@/components/SectionWrapper";
+
+import { getUnpaidOrders, updateOrderPaidStatus } from "./actions";
 
 export function Orders() {
   const [searchTerm, setSearchTerm] = useState("");

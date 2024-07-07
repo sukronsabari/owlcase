@@ -2,8 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { useQuery } from "@tanstack/react-query";
-import { ArrowRight } from "lucide-react";
+import { useCheckoutStore } from "@/stores";
 import type {
   CaseColor,
   CaseFinish,
@@ -12,15 +11,16 @@ import type {
   CaseOption,
   ImageConfiguration,
 } from "@prisma/client";
+import { useQuery } from "@tanstack/react-query";
+import { ArrowRight } from "lucide-react";
 
-import { useCheckoutStore } from "@/stores";
 import { formatPrice } from "@/lib/utils";
-import { getCart } from "./action";
-
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { SectionWrapper } from "@/components/SectionWrapper";
 import { Spinner } from "@/components/Spinner";
+
+import { getCart } from "./action";
 import { CartItem as CartItemComponent, CartItemSkeleton } from "./CartItem";
 import { CartMobileSummarySkeleton, CartSummarySkeleton } from "./Skeleton";
 

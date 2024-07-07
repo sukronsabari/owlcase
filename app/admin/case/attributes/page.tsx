@@ -1,8 +1,10 @@
-import { prisma } from "@/lib/db";
-import { CaseAttribute } from "./CaseAttribute";
-import getSession from "@/lib/getSession";
-import { redirect, notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { UserRole } from "@prisma/client";
+
+import { prisma } from "@/lib/db";
+import getSession from "@/lib/getSession";
+
+import { CaseAttribute } from "./CaseAttribute";
 
 export default async function CaseAttributePage() {
   const session = await getSession();

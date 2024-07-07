@@ -1,9 +1,9 @@
 "use client";
 
-import type { User } from "@prisma/client";
-import { DataTable } from "./data-table";
-import { columns } from "./columns";
 import { SectionWrapper } from "@/components/SectionWrapper";
+
+import { columns } from "./columns";
+import { DataTable } from "./data-table";
 
 export function Customers({
   customerData,

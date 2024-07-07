@@ -1,9 +1,11 @@
 import { ReactNode, Suspense } from "react";
-import { SideBar } from "./Sidebar";
-import getSession from "@/lib/getSession";
-import { redirect, notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { UserRole } from "@prisma/client";
+
+import getSession from "@/lib/getSession";
+
 import { Navbar } from "./Navbar";
+import { SideBar } from "./Sidebar";
 
 export default async function DashboardLayout({
   children,

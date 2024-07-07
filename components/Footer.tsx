@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import { SectionWrapper } from "./SectionWrapper";
 
 export function Footer() {

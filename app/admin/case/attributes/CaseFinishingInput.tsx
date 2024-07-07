@@ -1,11 +1,12 @@
 "use client";
 
 import { Dispatch, SetStateAction, useTransition } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { addFinishingSchema } from "@/schemas/add-finisihing.schema";
-import { createCaseFinishing } from "./actions";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -23,8 +24,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
+
+import { createCaseFinishing } from "./actions";
 
 export function CaseFinishingInput({
   openDialog,

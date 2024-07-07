@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import { useSyncExternalStore } from "react";
 
 export interface CheckoutItem {
   caseOptionId: string;
@@ -12,15 +11,18 @@ interface CheckoutState {
 }
 
 interface CheckoutAction {
+  // eslint-disable-next-line no-unused-vars
   setCheckoutItem: (item: CheckoutItem) => void;
+  // eslint-disable-next-line no-unused-vars
   setCheckoutItems: (items: CheckoutItem[]) => void;
+  // eslint-disable-next-line no-unused-vars
   replaceCheckoutItems: (items: CheckoutItem[]) => void;
   clearCheckoutItems: () => void;
 }
 
 export const useCheckoutStore = create<CheckoutState & CheckoutAction>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       checkoutItems: [],
       setCheckoutItem: (item) =>
         set((state) => ({

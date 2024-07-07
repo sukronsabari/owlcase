@@ -1,20 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Check, Star, ArrowRight } from "lucide-react";
-
-import { SectionWrapper } from "@/components/SectionWrapper";
-import { Phone } from "@/components/Phone";
-import { ProfilePicture } from "@/components/ProfilePicture";
-import { Icons } from "@/components/Icons";
-import { Reviews } from "@/components/Gallery";
-import { Button } from "@/components/ui/button";
-
-import YourImagesImg from "@/public/images/your-image.png";
+import ArrowImg from "@/public/images/arrow.png";
+import HorseImg from "@/public/images/horse.jpg";
 import LineImg from "@/public/images/line.png";
 import Owl1 from "@/public/images/owl/owl-1.svg";
-import Owl2 from "@/public/images/owl/owl-3.svg";
-import HorseImg from "@/public/images/horse.jpg";
-import ArrowImg from "@/public/images/arrow.png";
+import YourImagesImg from "@/public/images/your-image.png";
+import { ArrowRight, Check, Star } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import { Reviews } from "@/components/Gallery";
+import { Icons } from "@/components/Icons";
+import { Phone } from "@/components/Phone";
+import { ProfilePicture } from "@/components/ProfilePicture";
+import { SectionWrapper } from "@/components/SectionWrapper";
 
 export default function HomePage() {
   return (
@@ -28,15 +26,19 @@ export default function HomePage() {
                 <Image src={Owl1} className="w-28" alt="owl image" />
               </div>
               <h1 className="text-5xl font-bold tracking-tight text-balance !leading-tight md:text-6xl xl:text-7xl">
-                Abadikan Momen dengan{" "}
-                <span className="text-white bg-teal-600">Custom</span> Phone
-                Case
+                Ciptakan{" "}
+                <span className="text-white bg-teal-600 px-2">
+                  Custom Case Unik
+                </span>{" "}
+                Anda
               </h1>
               <p className="mt-8 text-lg max-w-prose text-balance md:text-wrap">
-                Abadikan kenangan favorit Anda dengan casing ponsel unik Anda
-                sendiri. <span className="font-semibold">Owlcase</span>
-                memungkinkan Anda melindungi kenangan Anda, buat casing anda
-                bukan hanya sekedar casing ponsel biasa.
+                Ekspresikan gaya unik Anda dengan case ponsel kustom dari
+                <span className="font-medium">Owlcase</span>. Pilih desain,
+                warna, dan material sesuai selera Anda dan buat case yang
+                benar-benar personal. Dengan kualitas terbaik dan ketahanan yang
+                luar biasa, case ponsel Anda akan melindungi dan memperindah
+                ponsel Anda setiap hari.
               </p>
               <ul className="mt-8 flex flex-col space-y-2 text-left">
                 <li className="flex items-center space-x-2">

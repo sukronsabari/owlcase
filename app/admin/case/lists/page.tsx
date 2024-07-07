@@ -1,8 +1,10 @@
-import { prisma } from "@/lib/db";
-import { CaseList } from "./CaseList";
-import getSession from "@/lib/getSession";
-import { redirect, notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { UserRole } from "@prisma/client";
+
+import { prisma } from "@/lib/db";
+import getSession from "@/lib/getSession";
+
+import { CaseList } from "./CaseList";
 
 export default async function CaseModelPage() {
   const session = await getSession();

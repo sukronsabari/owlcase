@@ -1,6 +1,9 @@
 "use client";
 
 import type { Dispatch, SetStateAction } from "react";
+import Image from "next/image";
+import { signIn } from "next-auth/react";
+
 import {
   Dialog,
   DialogContent,
@@ -8,10 +11,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import Image from "next/image";
-import { Button } from "./ui/button";
-import { signIn } from "next-auth/react";
+
 import { Icons } from "./Icons";
+import { Button } from "./ui/button";
 
 export function LoginModal({
   isOpen,

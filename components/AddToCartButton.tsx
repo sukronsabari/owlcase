@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { ShoppingCart, Box } from "lucide-react";
+import { Box, ShoppingCart } from "lucide-react";
 
 export function AddToCartButton() {
   const [isClicked, setIsClicked] = useState(false);

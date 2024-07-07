@@ -1,8 +1,9 @@
-import { prisma } from "@/lib/db";
-import { EditAddress } from "./EditAddress";
-import { fetchProvinces } from "@/actions/idn-area";
 import { notFound, redirect } from "next/navigation";
+
+import { prisma } from "@/lib/db";
 import getSession from "@/lib/getSession";
+
+import { EditAddress } from "./EditAddress";
 
 export default async function EditAddressPage({
   params,

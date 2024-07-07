@@ -1,8 +1,9 @@
-import { fetchProvinces } from "@/actions/idn-area";
-import { AddAddress } from "./AddAddress";
+import { redirect } from "next/navigation";
+
 import { prisma } from "@/lib/db";
 import getSession from "@/lib/getSession";
-import { notFound, redirect } from "next/navigation";
+
+import { AddAddress } from "./AddAddress";
 
 export default async function AddAddressPage() {
   const session = await getSession();

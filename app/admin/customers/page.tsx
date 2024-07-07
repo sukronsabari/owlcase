@@ -1,7 +1,9 @@
-import getSession from "@/lib/getSession";
-import { redirect, notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { UserRole } from "@prisma/client";
+
 import { prisma } from "@/lib/db";
+import getSession from "@/lib/getSession";
+
 import { Customers } from "./Customers";
 
 export default async function CustomersPage() {

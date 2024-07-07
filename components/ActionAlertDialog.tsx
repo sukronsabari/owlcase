@@ -1,5 +1,7 @@
 "use client";
 
+import { Dispatch, ReactNode, SetStateAction } from "react";
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,7 +12,6 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { Dispatch, ReactNode, SetStateAction } from "react";
 
 export function ActionAlertDialog({
   openDialog,

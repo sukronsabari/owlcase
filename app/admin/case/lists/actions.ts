@@ -1,10 +1,10 @@
 "use server";
 
-import { prisma } from "@/lib/db";
 import { revalidatePath } from "next/cache";
-import { z } from "zod";
 import { auth } from "@/auth";
 import { UserRole } from "@prisma/client";
+
+import { prisma } from "@/lib/db";
 
 export async function getCaseModels() {
   const caseModels = await prisma.caseModel.findMany({

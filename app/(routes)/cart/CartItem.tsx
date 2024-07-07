@@ -1,20 +1,21 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import Image from "next/image";
-import { Phone } from "@/components/Phone";
+
 import type {
   Cart,
   CartItem,
-  CaseOption,
-  ImageConfiguration,
   CaseColor,
   CaseFinish,
   CaseMaterial,
   CaseModel,
+  CaseOption,
+  ImageConfiguration,
 } from "@prisma/client";
-import { Minus, Plus } from "lucide-react";
-import { formatPrice } from "@/lib/utils";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { Minus, Plus } from "lucide-react";
+
+import { formatPrice } from "@/lib/utils";
+
 import { decreaseQuantity, increaseQuantity } from "./action";
 
 type CartWithItem =
@@ -44,6 +45,7 @@ export function CartItem({
       caseModel: CaseModel;
     };
   } & CartItem;
+  // eslint-disable-next-line no-unused-vars
   handleQuantityChange: (caseOptionId: string, newQuantity: number) => void;
 }) {
   const { caseModel, caseMaterial, caseFinish, imageConfiguration } =

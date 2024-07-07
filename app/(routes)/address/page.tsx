@@ -1,7 +1,9 @@
+import { redirect } from "next/navigation";
+
 import { prisma } from "@/lib/db";
-import { notFound, redirect } from "next/navigation";
-import { AddressList } from "./AddressList";
 import getSession from "@/lib/getSession";
+
+import { AddressList } from "./AddressList";
 
 export default async function AddressPage() {
   const session = await getSession();

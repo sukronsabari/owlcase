@@ -1,5 +1,6 @@
+import { Prisma, PrismaClient } from "@prisma/client";
 import { DefaultArgs } from "@prisma/client/runtime/library";
-import { PrismaClient, Prisma } from "@prisma/client";
+
 import { prisma } from "@/lib/db"; // Pastikan Anda mengimpor Prisma Client yang telah dikonfigurasi
 
 type TX = Omit<
@@ -8,6 +9,7 @@ type TX = Omit<
 >;
 
 export async function runQueryWithTransaction(
+  // eslint-disable-next-line no-unused-vars
   actions: (tx: TX) => Promise<any>
 ) {
   try {

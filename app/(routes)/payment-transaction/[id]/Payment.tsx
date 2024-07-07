@@ -1,20 +1,18 @@
 "use client";
 
-import { useState, useEffect, useCallback, ReactNode } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
-import { formatPrice } from "@/lib/utils";
-import { TransactionStatus } from "./type";
-
-import { SectionWrapper } from "@/components/SectionWrapper";
-import { Button } from "@/components/ui/button";
-
-import BriImg from "@/public/images/banks/bri.png";
+import Link from "next/link";
 import BcaImg from "@/public/images/banks/bca.png";
 import BniImg from "@/public/images/banks/bni.png";
+import BriImg from "@/public/images/banks/bri.png";
 import CimbImg from "@/public/images/banks/cimb.png";
-import QrisImg from "@/public/images/banks/qris.png";
-import { generateQrCodeUrl } from "@/lib/utils";
-import Link from "next/link";
+
+import { formatPrice } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { SectionWrapper } from "@/components/SectionWrapper";
+
+import { TransactionStatus } from "./type";
 
 interface TimeLeft {
   hours: number;

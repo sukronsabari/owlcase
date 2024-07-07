@@ -1,8 +1,6 @@
 "use server";
 
-import path from "path";
 import { createTransport } from "nodemailer";
-import { renderFile } from "ejs";
 
 const transporter = createTransport({
   host: process.env.MAIL_HOST,

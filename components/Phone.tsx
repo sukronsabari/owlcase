@@ -1,6 +1,8 @@
 import type { HTMLAttributes } from "react";
-import { cn } from "@/lib/utils";
 import Image from "next/image";
+
+import { cn } from "@/lib/utils";
+
 import PhoneDark from "../public/images/phone-template-dark-edges.png";
 import PhoneWhite from "../public/images/phone-template-white-edges.png";
 

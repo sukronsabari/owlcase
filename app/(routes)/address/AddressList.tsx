@@ -1,17 +1,11 @@
 "use client";
 
-import { SectionWrapper } from "@/components/SectionWrapper";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import type { ShippingAddress } from "@prisma/client";
+import { useMutation } from "@tanstack/react-query";
 import { EllipsisVertical, Pencil, Plus, Trash } from "lucide-react";
-import {
-  DropdownMenuGroup,
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -21,12 +15,18 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { useRouter } from "next/navigation";
-import { useMutation } from "@tanstack/react-query";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { SectionWrapper } from "@/components/SectionWrapper";
+
 import { deleteAddressAction } from "./actions";
-import { useState } from "react";
 
 export function AddressList({ addresses }: { addresses: ShippingAddress[] }) {
   const router = useRouter();

@@ -1,11 +1,12 @@
 "use server";
 
 import { auth } from "@/auth";
-import { prisma } from "@/lib/db";
 import { CheckoutItem } from "@/stores";
-import { CourierPricingResponse, Transaction } from "./types";
 import { createId as cuid } from "@paralleldrive/cuid2";
-import { z } from "zod";
+
+import { prisma } from "@/lib/db";
+
+import { CourierPricingResponse, Transaction } from "./types";
 
 export async function getCaseOptions(ids: string[]) {
   const session = await auth();
@@ -275,7 +276,6 @@ export async function createOrder({
   });
 
   const orderNumber = await generateOrderNumber();
-  const orderId = cuid();
   const newOrder = await prisma.order.create({
     data: {
       userId: session.user.id,

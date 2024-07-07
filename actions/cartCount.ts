@@ -1,8 +1,9 @@
 "use server";
 
-import { auth } from "@/auth";
-import { prisma } from "@/lib/db";
 import { unstable_noStore as noStore } from "next/cache";
+import { auth } from "@/auth";
+
+import { prisma } from "@/lib/db";
 
 export async function cartCount() {
   noStore();

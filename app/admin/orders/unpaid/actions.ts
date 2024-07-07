@@ -1,9 +1,9 @@
 "use server";
 
 import { auth } from "@/auth";
-import { prisma } from "@/lib/db";
 import { UserRole } from "@prisma/client";
-import { revalidatePath } from "next/cache";
+
+import { prisma } from "@/lib/db";
 
 export async function getUnpaidOrders() {
   const session = await auth();

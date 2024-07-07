@@ -1,24 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import Image from "next/image";
 import { useMemo, useState } from "react";
+import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
-import { EllipsisVertical, Search } from "lucide-react";
+import { EllipsisVertical } from "lucide-react";
 
-import {
-  requestCourierShipping,
-  getPaidOrders,
-  updateStatusToProcess,
-} from "./actions";
-import { cn, formatPrice } from "@/lib/utils";
 import { ORDER_STATUS_PHRASE } from "@/lib/constants";
-
-import { SectionWrapper } from "@/components/SectionWrapper";
-import { Button } from "@/components/ui/button";
+import { cn, formatPrice } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
-import { OrderStatusTags } from "@/components/OrderStatusTags";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -30,6 +22,14 @@ import {
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ActionAlertDialog } from "@/components/ActionAlertDialog";
+import { OrderStatusTags } from "@/components/OrderStatusTags";
+import { SectionWrapper } from "@/components/SectionWrapper";
+
+import {
+  getPaidOrders,
+  requestCourierShipping,
+  updateStatusToProcess,
+} from "./actions";
 
 const tags = [
   {

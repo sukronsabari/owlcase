@@ -1,17 +1,15 @@
 "use client";
 
 import { useMemo } from "react";
-import { OrderStatusTags } from "@/components/OrderStatusTags";
-import { SectionWrapper } from "@/components/SectionWrapper";
-import { Skeleton } from "@/components/ui/skeleton";
-import { ORDER_STATUS_PHRASE } from "@/lib/constants";
-import { getMyOrders } from "./actions";
-import { useQuery } from "@tanstack/react-query";
-import { useRouter, useSearchParams } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { cn, formatPrice } from "@/lib/utils";
 import Image from "next/image";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
+import { EllipsisVertical } from "lucide-react";
+
+import { ORDER_STATUS_PHRASE } from "@/lib/constants";
+import { cn, formatPrice } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,7 +18,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { EllipsisVertical } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
+import { OrderStatusTags } from "@/components/OrderStatusTags";
+import { SectionWrapper } from "@/components/SectionWrapper";
+
+import { getMyOrders } from "./actions";
 
 const tags = [
   {
@@ -57,12 +59,7 @@ export function Orders() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const status = searchParams.get("status") || tags[0].value;
-  const {
-    data: orders,
-    error,
-    isPending,
-    refetch,
-  } = useQuery({
+  const { data: orders, isPending } = useQuery({
     queryKey: ["my-orders"],
     queryFn: async () => {
       return await getMyOrders();

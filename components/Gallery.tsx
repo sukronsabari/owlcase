@@ -1,14 +1,13 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { useRef, useEffect, useState } from "react";
+import WhatPeopleBuyImg from "@/public/images/what-people-are-buying.png";
 import { motion, useInView } from "framer-motion";
 
 import { cn } from "@/lib/utils";
-
-import { SectionWrapper } from "@/components/SectionWrapper";
 import { Phone } from "@/components/Phone";
-import WhatPeopleBuyImg from "@/public/images/what-people-are-buying.png";
+import { SectionWrapper } from "@/components/SectionWrapper";
 
 const PHONES = [
   "/images/testimonials/1.jpg",
@@ -40,6 +39,7 @@ interface ReviewColumnProps {
   reviews: string[];
   msPerPixel: number;
   className?: string;
+  // eslint-disable-next-line no-unused-vars
   reviewClassName?: (index: number) => string;
 }
 
@@ -69,7 +69,6 @@ function Review({ imgSrc, className }: ReviewProps) {
 function ReviewColumn({
   reviews,
   msPerPixel,
-  className,
   reviewClassName,
   ...props
 }: ReviewColumnProps) {

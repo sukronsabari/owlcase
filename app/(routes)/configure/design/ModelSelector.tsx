@@ -1,23 +1,24 @@
 "use client";
 
-import { Dispatch, SetStateAction, useState } from "react";
-import { ChevronsUpDown, Check } from "lucide-react";
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-} from "@/components/ui/popover";
+import { useState } from "react";
+import { CaseColor, CaseFinish, CaseMaterial, CaseModel } from "@prisma/client";
+import { Check, ChevronsUpDown } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import {
   Command,
-  CommandInput,
   CommandEmpty,
   CommandGroup,
+  CommandInput,
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { CaseColor, CaseFinish, CaseMaterial, CaseModel } from "@prisma/client";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 type CaseModelWithVariants = CaseModel & {
   caseColors: CaseColor[];
@@ -27,6 +28,7 @@ type CaseModelWithVariants = CaseModel & {
 
 interface ModelSelectorProps {
   selectedModel: CaseModelWithVariants;
+  // eslint-disable-next-line no-unused-vars
   handleModelChange: (modelId: string) => void;
   caseModels: CaseModelWithVariants[];
 }

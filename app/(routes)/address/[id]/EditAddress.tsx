@@ -1,31 +1,32 @@
 "use client";
 
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { useCallback, useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import AsyncSelect from "react-select/async";
+import type { ShippingAddress } from "@prisma/client";
+import debounce from "debounce";
+import { useForm } from "react-hook-form";
 import { SingleValue } from "react-select";
+import AsyncSelect from "react-select/async";
+import { z } from "zod";
+
+import { Button } from "@/components/ui/button";
 import {
   Form,
+  FormControl,
   FormField,
   FormItem,
-  FormControl,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useCallback, useState, useTransition } from "react";
-import { Button } from "@/components/ui/button";
-import { SectionWrapper } from "@/components/SectionWrapper";
-import debounce from "debounce";
-
-import { useRouter } from "next/navigation";
-import { useToast } from "@/components/ui/use-toast";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { editAddressFormSchema } from "./schema";
-import type { ShippingAddress } from "@prisma/client";
+import { useToast } from "@/components/ui/use-toast";
+import { SectionWrapper } from "@/components/SectionWrapper";
+
 import { getAddressFromBiteshipAction } from "../add-address/actions";
 import { editAddressAction } from "./actions";
+import { editAddressFormSchema } from "./schema";
 
 export function EditAddress({ address }: { address: ShippingAddress }) {
   const router = useRouter();
@@ -153,11 +154,11 @@ export function EditAddress({ address }: { address: ShippingAddress }) {
                   : "Masukkan lokasi untuk mencari"
               }
               styles={{
-                control: (base, props) => ({
+                control: (base) => ({
                   ...base,
                   backgroundColor: "hsla(0, 0%, 100%, 1) !important",
                 }),
-                input: (base, props) => ({
+                input: (base) => ({
                   ...base,
                   "& input": {
                     fontFamily: "recursive",
@@ -169,7 +170,7 @@ export function EditAddress({ address }: { address: ShippingAddress }) {
                     lineHeight: "40px",
                   },
                 }),
-                placeholder: (base, props) => ({
+                placeholder: (base) => ({
                   ...base,
                   fontSize: "14px !important",
                   fontWeight: "400 !important",

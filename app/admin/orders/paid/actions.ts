@@ -1,9 +1,9 @@
 "use server";
 
-import { render } from "@react-email/render";
-import { UserRole } from "@prisma/client";
-
 import { auth } from "@/auth";
+import { UserRole } from "@prisma/client";
+import { render } from "@react-email/render";
+
 import { prisma } from "@/lib/db";
 import { sendMail } from "@/lib/mail";
 import { OrderReceivedEmail } from "@/components/emails/OrderReceivedEmail";

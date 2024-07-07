@@ -1,33 +1,32 @@
 "use client";
 
+import { Fragment, useRef, useState } from "react";
 import NextImage from "next/image";
-import { useState, useRef, Fragment } from "react";
-import { Rnd } from "react-rnd";
-import { ArrowRight } from "lucide-react";
-import { RadioGroup, Radio } from "@headlessui/react";
-import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import { Radio, RadioGroup } from "@headlessui/react";
 import type {
   CaseColor,
   CaseFinish,
   CaseMaterial,
   CaseModel,
 } from "@prisma/client";
+import { useMutation } from "@tanstack/react-query";
+import { ArrowRight } from "lucide-react";
+import { Rnd } from "react-rnd";
 
-import { base64ToBlob, formatPrice } from "@/lib/utils";
 import { useUploadThing } from "@/lib/uploadthing";
-
-import { HandleComponent } from "@/components/HandleComponent";
+import { base64ToBlob, formatPrice } from "@/lib/utils";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/components/ui/use-toast";
-import { VariantSelectorGroup } from "./VariantSelectorGroup";
-import { ModelSelector } from "./ModelSelector";
-import { saveCaseOption } from "./actions";
-import { useRouter } from "next/navigation";
+import { HandleComponent } from "@/components/HandleComponent";
 import { Spinner } from "@/components/Spinner";
-import S24 from "@/public/images/samsung-s24-template.png";
+
+import { saveCaseOption } from "./actions";
+import { ModelSelector } from "./ModelSelector";
+import { VariantSelectorGroup } from "./VariantSelectorGroup";
 
 type CaseModelWithVariants = CaseModel & {
   caseColors: CaseColor[];
@@ -106,6 +105,7 @@ export function DesignConfigurator({
   const { mutate, isPending } = useMutation({
     mutationKey: ["save-config"],
     mutationFn: async () => {
+      // eslint-disable-next-line no-unused-vars
       const [_, caseOptionId] = await Promise.all([
         saveImageConfiguration(),
         saveCaseOption({
@@ -281,7 +281,7 @@ export function DesignConfigurator({
                     {selectedModel.caseColors.map((color) => {
                       return (
                         <Radio as={Fragment} key={color.id} value={color}>
-                          {({ checked, disabled }) => (
+                          {({ checked }) => (
                             <div
                               className="relative -m-0.5 flex items-center justify-center cursor-pointer rounded-full p-0.5 active:ring-0 focus:ring-0 active:outline-none focus:outline-none border-2"
                               style={{

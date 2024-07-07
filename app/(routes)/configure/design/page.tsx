@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
-import { DesignConfigurator } from "./DesignConfigurator";
+
 import { prisma } from "@/lib/db";
+
+import { DesignConfigurator } from "./DesignConfigurator";
 
 interface DesignPageProps {
   searchParams: {

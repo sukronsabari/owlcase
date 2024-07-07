@@ -1,67 +1,48 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import {
-  useState,
-  useTransition,
-  useSyncExternalStore,
-  useEffect,
-} from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Skeleton } from "@/components/ui/skeleton";
-
-import BriImg from "@/public/images/banks/bri.png";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import BcaImg from "@/public/images/banks/bca.png";
 import BniImg from "@/public/images/banks/bni.png";
+import BriImg from "@/public/images/banks/bri.png";
 import CimbImg from "@/public/images/banks/cimb.png";
 import QrisImg from "@/public/images/banks/qris.png";
-
+import AnterajaImg from "@/public/images/couriers/anteraja.png";
+import DefaultCourierImg from "@/public/images/couriers/default.png";
 import JneImg from "@/public/images/couriers/jne.png";
 import JntImg from "@/public/images/couriers/jnt.png";
 import SicepatImg from "@/public/images/couriers/sicepat.png";
-import AnterajaImg from "@/public/images/couriers/anteraja.png";
-import DefaultCourierImg from "@/public/images/couriers/default.png";
-
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { cn, formatPrice } from "@/lib/utils";
-import { SectionWrapper } from "@/components/SectionWrapper";
-
-import type {
-  CaseModel,
-  CaseColor,
-  CaseMaterial,
-  CaseFinish,
-  ImageConfiguration,
-  CaseOption,
-  CartItem,
-  Cart,
-} from "@prisma/client";
 import { CheckoutItem, useCheckoutStore } from "@/stores";
-import { useShallow } from "zustand/react/shallow";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { Spinner } from "@/components/Spinner";
-import Link from "next/link";
-import { Phone } from "@/components/Phone";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import {
-  createOrder,
-  getAddresses,
-  getCaseOptions,
-  getCourierPricing,
-} from "./actions";
 import { Plus } from "lucide-react";
+import { useSession } from "next-auth/react";
+import { useShallow } from "zustand/react/shallow";
+
+import { cn, formatPrice } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { SectionWrapper } from "@/components/SectionWrapper";
+import { Spinner } from "@/components/Spinner";
+
+import {
+  createOrder,
+  getAddresses,
+  getCaseOptions,
+  getCourierPricing,
+} from "./actions";
 import { Pricing } from "./types";
 
 const banks = [
@@ -131,7 +112,6 @@ export default function CheckoutPage() {
 
   let subtotalPrice = 0;
 
-  const [openPaymentDialog, setOpenPaymentDialog] = useState(false);
   const [selectedPayment, setSelectedPayment] = useState<
     (typeof banks)[number] | (typeof ewallet)[number]
   >(ewallet[0]);
@@ -189,7 +169,7 @@ export default function CheckoutPage() {
         });
       }
     },
-    onSuccess: (data, _, __) => {
+    onSuccess: (data) => {
       if (data) {
         router.push(`/payment-transaction/${data.transaction_id}`);
       }

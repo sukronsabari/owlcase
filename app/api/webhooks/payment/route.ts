@@ -1,8 +1,6 @@
-import { prisma } from "@/lib/db";
 import { NextResponse } from "next/server";
-import { render } from "@react-email/render";
-import { OrderReceivedEmail } from "@/components/emails/OrderReceivedEmail";
-import { sendMail } from "@/lib/mail";
+
+import { prisma } from "@/lib/db";
 
 interface VaNumber {
   va_number: string;

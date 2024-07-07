@@ -1,9 +1,10 @@
-import { prisma } from "@/lib/db";
-import getSession from "@/lib/getSession";
-import { UserRole } from "@prisma/client";
 import { notFound, redirect } from "next/navigation";
-import { Dashboard } from "./Dashboard";
+import { UserRole } from "@prisma/client";
+
+import getSession from "@/lib/getSession";
+
 import { getDashboardData } from "./actions";
+import { Dashboard } from "./Dashboard";
 
 export default async function DashboardPage() {
   const session = await getSession();

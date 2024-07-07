@@ -1,7 +1,8 @@
-import { prisma } from "@/lib/db";
-import { CartList } from "./CartList";
+import { redirect } from "next/navigation";
+
 import getSession from "@/lib/getSession";
-import { notFound, redirect } from "next/navigation";
+
+import { CartList } from "./CartList";
 
 export default async function CartsPage() {
   const session = await getSession();

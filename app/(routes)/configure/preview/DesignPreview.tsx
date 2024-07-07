@@ -3,31 +3,28 @@
 
 import { useEffect, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { ArrowRight, Check, ShoppingCart } from "lucide-react";
-import Confetti from "react-dom-confetti";
-import Image from "next/image";
+import { useCheckoutStore } from "@/stores";
 import type {
-  ImageConfiguration,
+  Cart,
+  CartItem,
   CaseColor,
-  CaseOption,
   CaseFinish,
   CaseMaterial,
   CaseModel,
-  Cart,
-  CartItem,
+  CaseOption,
+  ImageConfiguration,
 } from "@prisma/client";
-import { addToCartAction } from "./actions";
-import { formatPrice } from "@/lib/utils";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { ArrowRight, Check, ShoppingCart } from "lucide-react";
+import { useSession } from "next-auth/react";
+import Confetti from "react-dom-confetti";
 
-import { Phone } from "@/components/Phone";
+import { formatPrice } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/components/ui/use-toast";
 import { LoginModal } from "@/components/LoginModal";
 import { Spinner } from "@/components/Spinner";
-import { useCheckoutStore } from "@/stores";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+
+import { addToCartAction } from "./actions";
 
 type CaseOptionWithImage = CaseOption & {
   imageConfiguration: ImageConfiguration;
@@ -59,7 +56,7 @@ export function DesignPreview({ caseOption }: DesignPreviewProps) {
     state.setCheckoutItem,
   ]);
 
-  const { imageConfiguration, caseModel, caseColor, caseMaterial, caseFinish } =
+  const { imageConfiguration, caseModel, caseMaterial, caseFinish } =
     caseOption;
   const totalPrice = caseModel.price + caseMaterial.price + caseFinish.price;
 

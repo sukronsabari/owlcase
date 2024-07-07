@@ -1,11 +1,15 @@
 "use client";
 
-import Link from "next/link";
-import { z } from "zod";
 import { useEffect, useState, useTransition } from "react";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { LoginAction } from "@/actions/login";
+import { loginFormSchema } from "@/schemas/login";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import { getReasonPhrase } from "http-status-codes";
+import { useSession } from "next-auth/react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -18,11 +22,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
-import { loginFormSchema } from "@/schemas/login";
-import { LoginAction } from "@/actions/login";
+
 import { OAuthButton } from "./OAuthButton";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useSession } from "next-auth/react";
 
 export function LoginForm() {
   const session = useSession();
@@ -32,7 +33,7 @@ export function LoginForm() {
   const [urlError, setUrlError] = useState("");
 
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl");
+  // const callbackUrl = searchParams.get("callbackUrl");
   const form = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {

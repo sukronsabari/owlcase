@@ -1,7 +1,8 @@
 "use server";
 
-import { prisma } from "@/lib/db";
 import { auth } from "@/auth";
+
+import { prisma } from "@/lib/db";
 
 export async function getCart() {
   const session = await auth();

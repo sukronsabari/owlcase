@@ -1,16 +1,17 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import { LogIn, ShoppingCart } from "lucide-react";
-import { signOut, useSession } from "next-auth/react";
+import { cartCount } from "@/actions/cartCount";
 import { useQuery } from "@tanstack/react-query";
+import { LogIn, ShoppingCart } from "lucide-react";
+import { useSession } from "next-auth/react";
 
 import { cn } from "@/lib/utils";
-import { cartCount } from "@/actions/cartCount";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { SectionWrapper } from "@/components/SectionWrapper";
+
 import { LoginModal } from "./LoginModal";
 import { UserLoggedIn } from "./UserLoggedIn";
 

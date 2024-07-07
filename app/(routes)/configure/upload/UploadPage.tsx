@@ -1,12 +1,13 @@
 "use client";
 
 import { useCallback, useState, useTransition } from "react";
-import { FileRejection, useDropzone } from "react-dropzone";
-import { ImageIcon, MousePointerSquareDashed, RefreshCcw } from "lucide-react";
-import { useToast } from "@/components/ui/use-toast";
-import { useUploadThing } from "@/lib/uploadthing";
 import { useRouter } from "next/navigation";
+import { ImageIcon, MousePointerSquareDashed, RefreshCcw } from "lucide-react";
+import { FileRejection, useDropzone } from "react-dropzone";
+
+import { useUploadThing } from "@/lib/uploadthing";
 import { Progress } from "@/components/ui/progress";
+import { useToast } from "@/components/ui/use-toast";
 
 const allowedFiles = {
   "image/png": [".png"],

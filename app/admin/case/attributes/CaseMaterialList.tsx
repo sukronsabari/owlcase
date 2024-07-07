@@ -5,17 +5,18 @@ import type { CaseMaterial } from "@prisma/client";
 import { Plus, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { deleteCaseMaterialById } from "./actions";
-import { CaseMaterialInput } from "./CaseMaterialInput";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { ActionAlertDialog } from "@/components/ActionAlertDialog";
-import { useToast } from "@/components/ui/use-toast";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useToast } from "@/components/ui/use-toast";
+import { ActionAlertDialog } from "@/components/ActionAlertDialog";
+
+import { deleteCaseMaterialById } from "./actions";
+import { CaseMaterialInput } from "./CaseMaterialInput";
 
 export function CaseMaterialList({
   caseMaterials,

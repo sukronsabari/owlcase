@@ -1,13 +1,15 @@
 "use client";
 
-import { RadioGroup, Label, Radio, Description } from "@headlessui/react";
-import { formatPrice, cn } from "@/lib/utils";
-import type { CaseFinish, CaseMaterial } from "@prisma/client";
 import { Fragment } from "react";
+import { Description, Label, Radio, RadioGroup } from "@headlessui/react";
+import type { CaseFinish, CaseMaterial } from "@prisma/client";
+
+import { cn, formatPrice } from "@/lib/utils";
 
 interface VariantSelectorGroupProps {
   label: string;
   selectedValue: CaseFinish | CaseMaterial;
+  // eslint-disable-next-line no-unused-vars
   onChange: (id: string) => void;
   optionsData: CaseFinish[] | CaseMaterial[];
 }

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { SectionWrapper } from "@/components/SectionWrapper";
+
 import { cn } from "@/lib/utils";
 
 const STEPS = [

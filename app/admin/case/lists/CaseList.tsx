@@ -1,44 +1,25 @@
 "use client";
 
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
-import { CaseMaterialSelector } from "./CaseMaterialSelector";
-import { CaseFinishSelector } from "./CaseFinishSelector";
-import { useRouter } from "next/navigation";
-
-import {
-  Form,
-  FormField,
-  FormItem,
-  FormControl,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { SectionWrapper } from "@/components/SectionWrapper";
-import type {
-  CaseColor,
-  CaseFinish,
-  CaseMaterial,
-  CaseModel,
-} from "@prisma/client";
 import Image from "next/image";
-import { Plus } from "lucide-react";
-import { cn, formatPrice } from "@/lib/utils";
-import { CaseColorSelector } from "./CaseColorSelector";
-import { useState } from "react";
-import { Popover, PopoverContent } from "@/components/ui/popover";
-import { Label } from "@/components/ui/label";
+import { useRouter } from "next/navigation";
+import type { CaseColor, CaseFinish, CaseMaterial } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
-import { getCaseModels } from "./actions";
+import { Plus } from "lucide-react";
+
+import { cn, formatPrice } from "@/lib/utils";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { SectionWrapper } from "@/components/SectionWrapper";
+
+import { getCaseModels } from "./actions";
+import { CaseColorSelector } from "./CaseColorSelector";
+import { CaseFinishSelector } from "./CaseFinishSelector";
+import { CaseMaterialSelector } from "./CaseMaterialSelector";
 
 export function CaseList({
   caseColors,

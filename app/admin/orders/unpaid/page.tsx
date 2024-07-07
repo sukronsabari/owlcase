@@ -1,6 +1,8 @@
-import getSession from "@/lib/getSession";
-import { redirect, notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { UserRole } from "@prisma/client";
+
+import getSession from "@/lib/getSession";
+
 import { Orders } from "./UnpaidOrder";
 
 export default async function PaidOrderPage() {

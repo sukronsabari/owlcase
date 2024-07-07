@@ -1,8 +1,9 @@
 "use server";
 
-import { auth } from "@/auth";
-import { prisma } from "@/lib/db";
 import { revalidatePath } from "next/cache";
+import { auth } from "@/auth";
+
+import { prisma } from "@/lib/db";
 
 export async function deleteAddressAction(id: string) {
   const session = await auth();

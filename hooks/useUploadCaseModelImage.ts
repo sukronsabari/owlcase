@@ -1,9 +1,9 @@
-import { useState, useCallback } from "react";
-import { UseFormReturn } from "react-hook-form";
+import { useCallback, useState, useTransition } from "react";
 import { FileRejection, useDropzone } from "react-dropzone";
-import { useTransition } from "react";
-import { useToast } from "@/components/ui/use-toast";
+import { UseFormReturn } from "react-hook-form";
+
 import { useUploadThing } from "@/lib/uploadthing";
+import { useToast } from "@/components/ui/use-toast";
 
 const allowedFiles = {
   "image/png": [".png"],

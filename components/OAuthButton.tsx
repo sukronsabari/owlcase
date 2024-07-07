@@ -1,17 +1,18 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
+
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/Icons";
-import { useSearchParams } from "next/navigation";
 
 export function OAuthButton({ callbackUrl }: { callbackUrl?: string }) {
   const searchParams = useSearchParams();
   const url = callbackUrl || (searchParams.get("callbackUrl") ?? "/");
 
-  const handleClick = async (provider: "google" | "github") => {
-    await signIn(provider);
-  };
+  // const handleClick = async (provider: "google" | "github") => {
+  //   await signIn(provider);
+  // };
   return (
     <div className="space-y-3">
       <Button

@@ -1,30 +1,22 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { LogOut, ShoppingBag } from "lucide-react";
 import { User } from "next-auth";
 import { signOut } from "next-auth/react";
-import { useRouter } from "next/navigation";
+
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuPortal,
   DropdownMenuSeparator,
   DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
 import { Button } from "./ui/button";
-import {
-  UserPlus,
-  Mail,
-  MessageSquare,
-  PlusCircle,
-  ShoppingBag,
-  LogOut,
-} from "lucide-react";
 
 export function UserLoggedIn({ user }: { user: User }) {
   const router = useRouter();

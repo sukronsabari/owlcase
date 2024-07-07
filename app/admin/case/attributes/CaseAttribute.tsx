@@ -1,20 +1,16 @@
 "use client";
 
-import { SectionWrapper } from "@/components/SectionWrapper";
-import type { CaseColor, CaseFinish, CaseMaterial } from "@prisma/client";
 import { useState } from "react";
 import Image from "next/image";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { Pencil, Plus, X } from "lucide-react";
-import { CaseColorInput } from "./CaseColorInput";
-import { cn } from "@/lib/utils";
-import { CaseMaterialInput } from "./CaseMaterialInput";
-import { ActionAlertDialog } from "@/components/ActionAlertDialog";
-import { deleteCaseFinishById } from "./actions";
-import { CaseFinishingInput } from "./CaseFinishingInput";
+import type { CaseColor, CaseFinish, CaseMaterial } from "@prisma/client";
+import { Pencil, X } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import { SectionWrapper } from "@/components/SectionWrapper";
+
 import { CaseColorList } from "./CaseColorList";
-import { CaseMaterialList } from "./CaseMaterialList";
 import { CaseFinishList } from "./CaseFinishList";
+import { CaseMaterialList } from "./CaseMaterialList";
 
 export function CaseAttribute({
   caseColors,
@@ -32,14 +28,6 @@ export function CaseAttribute({
   const [isEditColor, setIsEditColor] = useState(false);
   const [isEditMaterial, setIsEditMaterial] = useState(false);
   const [isEditFinish, setIsEditFinish] = useState(false);
-
-  const [deletedCaseFinish, setDeletedCaseFinish] = useState<string | null>(
-    null
-  );
-  const [deletedCaseMaterial, setDeletedCaseMaterial] = useState<string | null>(
-    null
-  );
-  const [deletedCaseColor, setDeletedCaseColor] = useState<string | null>(null);
 
   return (
     <SectionWrapper className="py-10 px-4">

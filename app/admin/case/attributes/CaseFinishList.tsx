@@ -1,14 +1,16 @@
 "use client";
 
-import { Plus, X } from "lucide-react";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { CaseFinishingInput } from "./CaseFinishingInput";
-import { ActionAlertDialog } from "@/components/ActionAlertDialog";
-import type { CaseFinish } from "@prisma/client";
-import { cn } from "@/lib/utils";
 import { useState } from "react";
-import { deleteCaseFinishById } from "./actions";
+import type { CaseFinish } from "@prisma/client";
+import { Plus, X } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
+import { ActionAlertDialog } from "@/components/ActionAlertDialog";
+
+import { deleteCaseFinishById } from "./actions";
+import { CaseFinishingInput } from "./CaseFinishingInput";
 
 export function CaseFinishList({
   caseFinishes,

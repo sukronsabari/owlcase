@@ -1,7 +1,7 @@
 "use server";
 
 import { unstable_cache } from "next/cache";
-import { Province, Regency, getProvinces, getRegencies } from "idn-area-data";
+import { getRegencies, Province } from "idn-area-data";
 
 export const fetchProvinces = unstable_cache(async () => {
   const response = await fetch(

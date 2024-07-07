@@ -1,5 +1,7 @@
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
+
 import { prisma } from "@/lib/db";
+
 import { DesignPreview } from "./DesignPreview";
 
 interface PreviewPageProps {

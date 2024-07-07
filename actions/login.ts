@@ -1,10 +1,11 @@
 "use server";
 
-import { z } from "zod";
-import { AuthError } from "next-auth";
-import { loginFormSchema } from "@/schemas/login";
-import { IApiResponse } from "@/types/api-response";
 import { signIn } from "@/auth";
+import { loginFormSchema } from "@/schemas/login";
+import { AuthError } from "next-auth";
+import { z } from "zod";
+
+import { IApiResponse } from "@/types/api-response";
 
 export async function LoginAction(
   payload: z.infer<typeof loginFormSchema>,

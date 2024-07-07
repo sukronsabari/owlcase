@@ -1,8 +1,8 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
+
 import { Badge } from "./ui/badge";
-import { useEffect } from "react";
 
 interface Status {
   name: string;
