@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { prisma } from "@/lib/db";
@@ -9,6 +10,10 @@ interface PreviewPageProps {
     [key: string]: string | string[] | undefined;
   };
 }
+
+export const metadata: Metadata = {
+  title: "Preview Your Image",
+};
 
 export default async function PreviewPage({ searchParams }: PreviewPageProps) {
   const caseOptionId = searchParams?.caseOptionId as string;

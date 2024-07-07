@@ -6,9 +6,11 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL!;
+
 export function constructMetadata({
-  title = "Owlcase - custom high-quality phone cases",
-  description = "Create custom high-quality phone cases in seconds",
+  title = "Owlcase",
+  description = "Buat Custom Case Berkualitas Tinggi",
   image = "/images/thumbnail.png",
   icons = "/favicon.ico",
 }: {
@@ -18,12 +20,18 @@ export function constructMetadata({
   icons?: string;
 } = {}): Metadata {
   return {
-    title,
+    title: {
+      default: "Owlcase",
+      template: `%s | Owlcase`,
+    },
     description,
     openGraph: {
       title,
       description,
-      images: [{ url: image }],
+      url: baseUrl,
+      siteName: "Owlcase",
+      images: [{ url: `${baseUrl}/${image}` }],
+      locale: "id_ID",
     },
     twitter: {
       card: "summary_large_image",

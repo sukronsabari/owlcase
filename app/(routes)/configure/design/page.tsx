@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { prisma } from "@/lib/db";
@@ -9,6 +10,10 @@ interface DesignPageProps {
     [key: string]: string | string[] | undefined;
   };
 }
+
+export const metadata: Metadata = {
+  title: "Customize Image",
+};
 
 export default async function DesignPage({ searchParams }: DesignPageProps) {
   const imageConfigId = searchParams?.imageConfigId as string;
