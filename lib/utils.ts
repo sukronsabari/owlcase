@@ -10,7 +10,7 @@ const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL!;
 
 export function constructMetadata({
   title = "Owlcase",
-  description = "Buat Custom Case Berkualitas Tinggi",
+  description = "Buat custom case berkualitas tinggi dengan Owlcase. Desain case unik dan personal untuk smartphone Anda.",
   image = "/images/thumbnail.png",
   icons = "/favicon.ico",
 }: {
@@ -21,7 +21,7 @@ export function constructMetadata({
 } = {}): Metadata {
   return {
     title: {
-      default: "Owlcase",
+      default: title,
       template: `%s | Owlcase`,
     },
     description,
