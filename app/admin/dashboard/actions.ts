@@ -5,6 +5,56 @@ import type { OrderStatus } from "@prisma/client";
 import { randomInt } from "crypto";
 import { unstable_noStore as noStore } from "next/cache";
 
+import { createReadStream, createWriteStream } from "fs";
+import { AsyncParser } from "@json2csv/node";
+
+// export async function generateCsv() {
+//   const orders = await prisma.order.findMany({
+//     where: {
+//       isPaid: true,
+//     },
+//     include: {
+//       items: {
+//         include: {
+//           caseOption: {
+//             include: {
+//               imageConfiguration: true,
+//               caseModel: true,
+//             },
+//           },
+//         },
+//       },
+//       shippingAddress: true,
+//       user: true,
+//     },
+//   });
+
+//   const orderMap = orders.map((order) => ({
+//     id: order.id,
+//     orderDate: order.createdAt.toLocaleDateString(),
+//     amount: order.amount,
+//     courierRates: order.courierRates,
+//     items: order.items
+//       .map((item) => {
+//         return `${item.caseOption.caseModel.name} (${item.quantity}): ${item.caseOption.imageConfiguration.croppedImageUrl}`;
+//       })
+//       .join(", "), // Menggabungkan item menjadi satu string
+//   }));
+
+//   // const fields = ["id", "status", "customer", "item", "date"];
+//   const opts = {};
+//   const transformOpts = {};
+
+//   const parser = new AsyncParser(opts, transformOpts);
+
+//   // let csv = "";
+
+//   const data = await parser.parse(orderMap).promise();
+//   console.log(data);
+
+//   return data;
+// }
+
 export async function ChangeOrderStatus({
   id,
   newStatus,
@@ -25,7 +75,15 @@ export const getDashboardData = async () => {
       isPaid: true,
     },
     include: {
-      items: true,
+      items: {
+        include: {
+          caseOption: {
+            include: {
+              imageConfiguration: true,
+            },
+          },
+        },
+      },
       shippingAddress: true,
       user: true,
     },

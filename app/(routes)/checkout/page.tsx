@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import {
@@ -302,7 +303,12 @@ export default function CheckoutPage() {
             <div className="w-full flex flex-wrap gap-8 justify-center">
               {caseOptions && caseOptions.length
                 ? caseOptions?.map((caseOption) => {
-                    const { caseModel, caseMaterial, caseFinish } = caseOption;
+                    const {
+                      caseModel,
+                      caseMaterial,
+                      caseFinish,
+                      imageConfiguration,
+                    } = caseOption;
                     const price =
                       caseModel.price + caseMaterial.price + caseFinish.price;
                     const checkoutItem = checkoutItems.find(
@@ -317,15 +323,20 @@ export default function CheckoutPage() {
                         key={caseOption.id}
                       >
                         <div className="bg-gray-100 p-6 rounded-sm h-44">
-                          <Phone
-                            imgSrc={
-                              caseOption.imageConfiguration!.croppedImageUrl!
-                            }
-                            style={{
-                              backgroundColor: caseOption.caseColor.hex,
-                            }}
-                            className="w-14"
-                          />
+                          <div className="w-16 h-auto pointer-events-none relative z-[49] overflow-hidden">
+                            <img
+                              src={caseModel.edgeImgUrl}
+                              alt="phone image"
+                              className="pointer-events-none z-[49] select-none"
+                            />
+                            <div className="absolute -z-10 inset-0">
+                              <img
+                                src={imageConfiguration.croppedImageUrl || ""}
+                                alt="overlaying phone image"
+                                className="object-cover min-w-full min-h-full"
+                              />
+                            </div>
+                          </div>
                         </div>
                         <div className="flex-1 text-xs relative h-44">
                           <div className="mb-4">

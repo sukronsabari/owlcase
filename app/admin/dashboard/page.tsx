@@ -7,7 +7,7 @@ import { getDashboardData } from "./actions";
 
 export default async function DashboardPage() {
   const session = await getSession();
-  const callbackUrl = encodeURIComponent(`/dashboard`);
+  const callbackUrl = encodeURIComponent(`/admin/dashboard`);
 
   if (!session?.user.id) {
     redirect(`/?callbackUrl=${callbackUrl}`);

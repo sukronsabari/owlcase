@@ -5,6 +5,7 @@ import { prisma } from "@/lib/db";
 import { CheckoutItem } from "@/stores";
 import { CourierPricingResponse, Transaction } from "./types";
 import { createId as cuid } from "@paralleldrive/cuid2";
+import { z } from "zod";
 
 export async function getCaseOptions(ids: string[]) {
   const session = await auth();
@@ -149,6 +150,18 @@ export async function getCourierPricing({
   return responseJson.pricing;
 }
 
+const generateOrderNumber = async () => {
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = `0${date.getMonth() + 1}`.slice(-2);
+  const day = `0${date.getDate()}`.slice(-2);
+
+  const orderCount = await prisma.order.count();
+  const orderNumber = `ORD-${year}${month}${day}-${orderCount + 1}`;
+
+  return orderNumber;
+};
+
 export async function createOrder({
   payment,
   addressId,
@@ -261,11 +274,15 @@ export async function createOrder({
     };
   });
 
+  const orderNumber = await generateOrderNumber();
+  const orderId = cuid();
   const newOrder = await prisma.order.create({
     data: {
       userId: session.user.id,
       amount: totalAmount,
+      orderNumber,
       shippingAddressId: findAddress.id,
+      paymentMethod: payment.paymentType,
       courierCompany: courier.courierCompany,
       courierInsurance: courier.courierInsurance,
       courierType: courier.courierType,
@@ -385,7 +402,22 @@ export async function createOrder({
     );
   }
 
-  const paymentResponseJson = await paymentResponse.json();
+  const paymentResponseJson: Transaction = await paymentResponse.json();
+
+  if (paymentResponseJson.transaction_id) {
+    await prisma.order.update({
+      where: {
+        id: newOrder.id,
+      },
+      data: {
+        transactionId: paymentResponseJson.transaction_id,
+      },
+    });
+  } else {
+    throw new Error(
+      "Terjadi kesalahan, gagal dalam membuat sesi pembayaran, tolong periksa kembali metode pembayaran yang anda gunakan atau gunakan metode pembayaran yang lain"
+    );
+  }
 
   return paymentResponseJson as Transaction;
 }

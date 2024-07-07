@@ -3,6 +3,10 @@
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import React from "react";
+import { CaseMaterialSelector } from "./CaseMaterialSelector";
+import { CaseFinishSelector } from "./CaseFinishSelector";
+import { useRouter } from "next/navigation";
 
 import {
   Form,
@@ -45,12 +49,11 @@ export function CaseList({
   caseMaterials: CaseMaterial[];
   caseFinishes: CaseFinish[];
 }) {
+  const router = useRouter();
   const { data: caseModels, isLoading } = useQuery({
     queryKey: ["case-models"],
     queryFn: async () => await getCaseModels(),
   });
-
-  const [openAddCaseModel, setOpenAddCaseModel] = useState(false);
 
   return (
     <SectionWrapper className="px-4 py-10">
@@ -60,7 +63,7 @@ export function CaseList({
           <Button
             variant="outline"
             size="icon"
-            onClick={() => setOpenAddCaseModel(true)}
+            onClick={() => router.push("/admin/case/lists/add")}
           >
             <Plus className="w-4 h-4" />
           </Button>
@@ -188,19 +191,14 @@ export function CaseList({
               ))}
           </div>
         )}
-        <CaseModelInput
+        {/* <CaseModelInput
           openDialog={openAddCaseModel}
           setOpenDialog={setOpenAddCaseModel}
-        />
+        /> */}
       </>
     </SectionWrapper>
   );
 }
-
-import React from "react";
-import { CaseMaterialSelector } from "./CaseMaterialSelector";
-import { CaseFinishSelector } from "./CaseFinishSelector";
-import { CaseModelInput } from "./CaseModelInput";
 
 const Skeleton = () => {
   return (

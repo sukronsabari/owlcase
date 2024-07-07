@@ -50,7 +50,7 @@ export function Navbar() {
                 </Button> */}
                 {user.role === "ADMIN" && (
                   <Button variant="ghost" size="sm" asChild>
-                    <Link href="/dashboard">Dashboard 🚀</Link>
+                    <Link href="/admin/dashboard">Dashboard 🚀</Link>
                   </Button>
                 )}
                 <Button variant="outline" size="icon" asChild>

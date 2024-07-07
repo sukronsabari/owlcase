@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useEffect, useState, useTransition } from "react";
@@ -6,6 +7,7 @@ import { useSession } from "next-auth/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ArrowRight, Check, ShoppingCart } from "lucide-react";
 import Confetti from "react-dom-confetti";
+import Image from "next/image";
 import type {
   ImageConfiguration,
   CaseColor,
@@ -25,6 +27,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { LoginModal } from "@/components/LoginModal";
 import { Spinner } from "@/components/Spinner";
 import { useCheckoutStore } from "@/stores";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 type CaseOptionWithImage = CaseOption & {
   imageConfiguration: ImageConfiguration;
@@ -144,7 +147,7 @@ export function DesignPreview({ caseOption }: DesignPreviewProps) {
   }, []);
 
   return (
-    <>
+    <div className="bg-white">
       <div
         aria-hidden
         className="pointer-events-none select-none absolute inset-0 overflow-hidden flex justify-center"
@@ -164,12 +167,19 @@ export function DesignPreview({ caseOption }: DesignPreviewProps) {
       />
 
       <div className="mt-20 px-4 flex flex-col items-center gap-8 md:flex-row md:items-start md:gap-10">
-        <div>
-          <Phone
-            imgSrc={imageConfiguration.croppedImageUrl!}
-            style={{ backgroundColor: caseColor.hex }}
-            className="w-60"
+        <div className="w-60 h-full pointer-events-none relative z-[49] overflow-hidden">
+          <img
+            src={caseModel.edgeImgUrl}
+            alt="phone image"
+            className="pointer-events-none z-[49] select-none"
           />
+          <div className="absolute -z-10 inset-0">
+            <img
+              src={imageConfiguration.croppedImageUrl || ""}
+              alt="overlaying phone image"
+              className="object-cover min-w-full min-h-full"
+            />
+          </div>
         </div>
 
         <div className="flex-1">
@@ -279,6 +289,6 @@ export function DesignPreview({ caseOption }: DesignPreviewProps) {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

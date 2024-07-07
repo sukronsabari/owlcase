@@ -30,7 +30,7 @@ export const links: MenuItem[] = [
   {
     id: 1,
     name: "Home",
-    href: "/dashboard",
+    href: "/admin/dashboard",
     icon: Home,
   },
   {
@@ -42,25 +42,37 @@ export const links: MenuItem[] = [
       {
         id: 11,
         name: "Case List",
-        href: "/case/lists",
+        href: "/admin/case/lists",
       },
       {
         id: 12,
         name: "Case Atribut",
-        href: "/case/attributes",
+        href: "/admin/case/attributes",
       },
     ],
   },
   {
     id: 3,
     name: "Order",
-    href: "/orders",
+    href: "#",
     icon: Package,
+    items: [
+      {
+        id: 31,
+        name: "Paid",
+        href: "/admin/orders/paid",
+      },
+      {
+        id: 32,
+        name: "Unpaid",
+        href: "/admin/orders/unpaid",
+      },
+    ],
   },
   {
     id: 4,
     name: "Customers",
-    href: "/customers",
+    href: "/admin/customers",
     icon: Users,
   },
 ];

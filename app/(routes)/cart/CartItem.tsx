@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import Image from "next/image";
 import { Phone } from "@/components/Phone";
@@ -45,7 +46,8 @@ export function CartItem({
   } & CartItem;
   handleQuantityChange: (caseOptionId: string, newQuantity: number) => void;
 }) {
-  const { caseModel, caseMaterial, caseFinish } = item.caseOption;
+  const { caseModel, caseMaterial, caseFinish, imageConfiguration } =
+    item.caseOption;
   const totalPrice = caseModel.price + caseMaterial.price + caseFinish.price;
 
   const queryClient = useQueryClient();
@@ -133,11 +135,20 @@ export function CartItem({
   return (
     <div className="flex items-start gap-6 border border-gray-300 p-3 relative">
       <div className="bg-gray-100 p-6 rounded-sm h-44">
-        <Phone
-          imgSrc={item!.caseOption!.imageConfiguration!.croppedImageUrl!}
-          style={{ backgroundColor: item.caseOption.caseColor.hex }}
-          className="w-14"
-        />
+        <div className="w-16 h-auto pointer-events-none relative z-[49] overflow-hidden">
+          <img
+            src={caseModel.edgeImgUrl || ""}
+            alt="phone image"
+            className="pointer-events-none z-[49] select-none"
+          />
+          <div className="absolute -z-10 inset-0">
+            <img
+              src={imageConfiguration.croppedImageUrl || ""}
+              alt="overlaying phone image"
+              className="object-cover min-w-full min-h-full"
+            />
+          </div>
+        </div>
       </div>
       <div className="flex-1 text-xs relative h-44">
         <div className="mb-4">

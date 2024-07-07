@@ -6,7 +6,7 @@ import { UserRole } from "@prisma/client";
 
 export default async function CaseAttributePage() {
   const session = await getSession();
-  const callbackUrl = encodeURIComponent(`/dashboard`);
+  const callbackUrl = encodeURIComponent(`/admin/case/attributes`);
 
   if (!session?.user.id) {
     redirect(`/?callbackUrl=${callbackUrl}`);

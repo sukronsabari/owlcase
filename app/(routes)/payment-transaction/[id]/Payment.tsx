@@ -293,7 +293,7 @@ export function Payment({
         <h2 className="text-center font-bold text-5xl">Payment Success</h2>
         <p className="text-center font-medium mt-1">
           Pembayaran anda berhasil, anda bisa melihat pesanan anda di menu{" "}
-          <Link href="/order" className="text-teal-600 underline">
+          <Link href="/orders" className="text-teal-600 underline">
             Pesanan Saya
           </Link>
         </p>

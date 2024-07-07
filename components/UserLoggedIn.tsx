@@ -7,11 +7,24 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuPortal,
   DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "./ui/button";
+import {
+  UserPlus,
+  Mail,
+  MessageSquare,
+  PlusCircle,
+  ShoppingBag,
+  LogOut,
+} from "lucide-react";
 
 export function UserLoggedIn({ user }: { user: User }) {
   const router = useRouter();
@@ -32,20 +45,24 @@ export function UserLoggedIn({ user }: { user: User }) {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="z-[999999]">
-          <DropdownMenuItem
-            role="button"
-            className="cursor-pointer"
-            onClick={() => router.push("/order")}
-          >
-            Pesanan Saya
-          </DropdownMenuItem>
+          <DropdownMenuLabel>Menu</DropdownMenuLabel>
+          <DropdownMenuSub>
+            <DropdownMenuItem
+              onClick={() => router.push("/orders")}
+              className="py-3 cursor-pointer"
+            >
+              <ShoppingBag className="mr-2 h-4 w-4" />
+              <span>Pesanan Saya</span>
+            </DropdownMenuItem>
+          </DropdownMenuSub>
           <DropdownMenuSeparator />
           <DropdownMenuItem
             role="button"
-            className="cursor-pointer"
+            className="cursor-pointer py-2"
             onClick={() => signOut()}
           >
-            Logout
+            <LogOut className="w-4 h-4 mr-2" />
+            <span>Logout</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

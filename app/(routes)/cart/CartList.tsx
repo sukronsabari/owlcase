@@ -153,35 +153,37 @@ export function CartList() {
               : "No cart"}
           </div>
         </div>
-        <div className="hidden lg:block bg-gray-100 border p-4 col-span-1 h-fit mt-8 sticky top-20">
-          <div className="flow-root text-xs py-1">
-            <div className="flex items-center justify-between mt-3">
-              <div className="text-gray-900 capitalize font-bold">Total</div>
-              <div className="font-bold text-gray-900">
-                {formatPrice(total)}
+        {cart?.items.length ? (
+          <div className="hidden lg:block bg-gray-100 border p-4 col-span-1 h-fit mt-8 sticky top-20">
+            <div className="flow-root text-xs py-1">
+              <div className="flex items-center justify-between mt-3">
+                <div className="text-gray-900 capitalize font-bold">Total</div>
+                <div className="font-bold text-gray-900">
+                  {formatPrice(total)}
+                </div>
+              </div>
+
+              <div className="flex justify-end mt-3">
+                <Button
+                  onClick={handleCheckout}
+                  size="sm"
+                  className="px-4 bg-teal-600 hover:bg-teal-600/90 m:px-6 lg:px-8 min-w-[120px] text-xs w-full"
+                  disabled={isPending || !selectedCart.length}
+                >
+                  {isPending ? (
+                    <>
+                      <Spinner />
+                    </>
+                  ) : (
+                    <>
+                      Checkout <ArrowRight className="h-4 w-4 ml-1.5 inline" />
+                    </>
+                  )}
+                </Button>
               </div>
             </div>
-
-            <div className="flex justify-end mt-3">
-              <Button
-                onClick={handleCheckout}
-                size="sm"
-                className="px-4 bg-teal-600 hover:bg-teal-600/90 m:px-6 lg:px-8 min-w-[120px] text-xs w-full"
-                disabled={isPending || !selectedCart.length}
-              >
-                {isPending ? (
-                  <>
-                    <Spinner />
-                  </>
-                ) : (
-                  <>
-                    Checkout <ArrowRight className="h-4 w-4 ml-1.5 inline" />
-                  </>
-                )}
-              </Button>
-            </div>
           </div>
-        </div>
+        ) : null}
         {/* MOBILE */}
         <div className="p-4 bg-white shadow-lg border-t border-t-gray-200 w-full min-h-24 fixed z-50 bottom-0 left-0 lg:hidden">
           <div className="flow-root text-xs py-1 max-w-screen-sm mx-auto">

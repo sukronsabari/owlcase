@@ -31,6 +31,11 @@ import { StatusDropdown } from "./StatusDropdown";
 import { SectionWrapper } from "@/components/SectionWrapper";
 import { Button } from "@/components/ui/button";
 import { Line } from "react-chartjs-2";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 
 type OrderProps = {
   items: OrderItem[];
@@ -56,6 +61,9 @@ import {
   Title,
   CategoryScale,
 } from "chart.js";
+import { MoveDownIcon } from "lucide-react";
+import React, { useState } from "react";
+// import { generateCsv } from "./actions";
 
 ChartJS.register(
   LineController,
@@ -95,6 +103,23 @@ export function Dashboard({
   //     console.error("Gagal mengunduh file:", err);
   //   }
   // }
+  // const handleDownload = async () => {
+  //   try {
+  //     const csv = await generateCsv();
+  //     const blob = new Blob([csv], { type: "text/csv" });
+  //     const url = window.URL.createObjectURL(blob);
+  //     const a = document.createElement("a");
+  //     a.href = url;
+  //     a.download = "orders.csv";
+  //     document.body.appendChild(a);
+  //     a.click();
+  //     a.remove();
+  //   } catch (error) {
+  //     console.error("Error generating CSV:", error);
+  //   }
+  // };
+
+  const [selectedOrderId, setSelectedOrderId] = useState<string | null>(null);
 
   return (
     <SectionWrapper className="px-4 py-10 md:px-10">
@@ -142,56 +167,64 @@ export function Dashboard({
 
         <div className="mt-8 pb-14">
           <h2 className="text-xl font-semibold mb-2">Pesanan Terbaru</h2>
-          <Table>
+          {/* <Table>
             <TableHeader>
               <TableRow>
                 <TableHead>Customer</TableHead>
                 <TableHead className="hidden sm:table-cell">Status</TableHead>
                 <TableHead className="hidden sm:table-cell">Tanggal</TableHead>
                 <TableHead className="text-right">Total</TableHead>
-                {/* <TableHead className="hidden sm:table-cell">File</TableHead> */}
+                <TableHead className="hidden sm:table-cell">File</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {recentOrders.map((order) => (
-                <TableRow key={order.id} className="bg-accent">
-                  <TableCell>
-                    <div className="font-medium">
-                      {order.shippingAddress.contactName}
-                    </div>
-                    <div className="hidden text-sm text-muted-foreground md:inline">
-                      {order.user.email}
-                    </div>
-                  </TableCell>
-                  <TableCell className="hidden sm:table-cell">
-                    {/* <StatusDropdown id={order.id} orderStatus={order.status} /> */}
-                    {order.status}
-                  </TableCell>
-                  <TableCell className="hidden sm:table-cell">
-                    {order.createdAt.toLocaleDateString()}
-                  </TableCell>
-                  <TableCell className="text-right">
-                    {formatPrice(order.amount / 100)}
-                  </TableCell>
-                  {/* <TableCell className="hidden sm:table-cell">
-                    <Button
-                      variant="link"
-                      className="text-blue-500 px-0"
-                      // onClick={() =>
-                      //   handleDownload(
-                      //     order.phoneConfiguration!.imageConfiguration!
-                      //       .croppedImageUrl!,
-                      //     `image-${new Date().getTime()}`
-                      //   )
-                      // }
-                    >
-                      Link
-                    </Button>
-                  </TableCell> */}
-                </TableRow>
+                <React.Fragment key={order.id}>
+                  <TableRow className="bg-accent" suppressHydrationWarning>
+                    <TableCell>
+                      <div className="font-medium">
+                        {order.shippingAddress.contactName}
+                      </div>
+                      <div className="hidden text-sm text-muted-foreground md:inline">
+                        {order.user.email}
+                      </div>
+                    </TableCell>
+                    <TableCell className="hidden sm:table-cell">
+                      {order.status}
+                    </TableCell>
+                    <TableCell className="hidden sm:table-cell">
+                      {order.createdAt.toLocaleDateString()}
+                    </TableCell>
+                    <TableCell className="text-right">
+                      {formatPrice(order.amount)}
+                    </TableCell>
+                    <TableCell className="table-cell">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={() =>
+                          setSelectedOrderId(
+                            selectedOrderId === order.id ? null : order.id
+                          )
+                        }
+                      >
+                        <MoveDownIcon className="w-4 h-4" />
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                  <Collapsible open={selectedOrderId === order.id}>
+                    <CollapsibleContent>
+                      {order.items.map((item) => (
+                        <>
+                          <div>{item.quantity}</div>
+                        </>
+                      ))}
+                    </CollapsibleContent>
+                  </Collapsible>
+                </React.Fragment>
               ))}
             </TableBody>
-          </Table>
+          </Table> */}
         </div>
       </>
     </SectionWrapper>

@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import getSession from "@/lib/getSession";
 import { SectionWrapper } from "@/components/SectionWrapper";
 import { TransactionStatus } from "./type";
@@ -10,14 +10,16 @@ export default async function PaymentTransactionPage({
 }: {
   params: { id: string };
 }) {
-  const session = await getSession();
-
-  if (!session?.user.id) {
+  if (!params.id) {
     notFound();
   }
 
-  if (!params.id) {
-    notFound();
+  const session = await getSession();
+
+  const callbackUrl = encodeURIComponent(`/payment-transaction/${params.id}`);
+
+  if (!session?.user.id) {
+    redirect(`/?callbackUrl=${callbackUrl}`);
   }
 
   const response = await fetch(

@@ -23,6 +23,10 @@ async function main() {
         name: "Rose",
         hex: "#4c0519",
       },
+      {
+        name: "Pink",
+        hex: "#ffc2e1",
+      },
     ],
   });
 
@@ -60,9 +64,11 @@ async function main() {
   const phoneModels = await prisma.caseModel.createManyAndReturn({
     data: [
       {
-        name: "Iphone12 Pro Max",
-        url: "https://utfs.io/f/4da0d01e-714b-41a9-a965-4928823820ef-z5hq36.png",
+        name: "Iphone12",
+        url: "https://utfs.io/f/d3579d39-d738-4982-a2f1-62302b40c0f0-x9a5ja.png", // iphone12.png
         price: 35000,
+        edgeImgUrl:
+          "https://utfs.io/f/560e6c8f-d560-4087-9a25-b1f3119b83fa-1fby82.png", // iphone12-bg-edge.png
       },
     ],
   });

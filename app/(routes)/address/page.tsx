@@ -1,13 +1,15 @@
-import { auth } from "@/auth";
 import { prisma } from "@/lib/db";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { AddressList } from "./AddressList";
+import getSession from "@/lib/getSession";
 
 export default async function AddressPage() {
-  const session = await auth();
+  const session = await getSession();
+
+  const callbackUrl = encodeURIComponent(`/address`);
 
   if (!session?.user.id) {
-    notFound();
+    redirect(`/?callbackUrl=${callbackUrl}`);
   }
 
   const addresses = await prisma.shippingAddress.findMany({

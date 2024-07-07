@@ -22,7 +22,7 @@ export async function addToCartAction(caseOptionId: string) {
   if (!findCart) {
     findCart = await prisma.cart.create({
       data: {
-        userId: session.user.id!,
+        userId: session.user.id,
       },
     });
   }

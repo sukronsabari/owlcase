@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/db";
 import { EditAddress } from "./EditAddress";
 import { fetchProvinces } from "@/actions/idn-area";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import getSession from "@/lib/getSession";
 
 export default async function EditAddressPage({
@@ -11,8 +11,10 @@ export default async function EditAddressPage({
 }) {
   const session = await getSession();
 
+  const callbackUrl = encodeURIComponent(`/address/${params.id}`);
+
   if (!session?.user.id) {
-    notFound();
+    redirect(`/?callbackUrl=${callbackUrl}`);
   }
 
   const findAddress = await prisma.shippingAddress.findUnique({

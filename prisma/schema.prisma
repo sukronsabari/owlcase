@@ -15,9 +15,12 @@ enum UserRole {
 }
 
 enum OrderStatus {
+    PENDING
+    PROCESS
     FULLFILLED
     SHIPPED
     AWAITING_SHIPMENT
+    FAILURE
 }
 
 model User {
@@ -95,6 +98,7 @@ model CaseModel {
     id            String         @id @default(cuid())
     name          String
     url           String
+    edgeImgUrl    String
     price         Int
     caseColors    CaseColor[]
     caseMaterials CaseMaterial[]
@@ -156,7 +160,10 @@ model Order {
     shippingAddressId String
     amount            Int
     isPaid            Boolean     @default(false)
-    status            OrderStatus @default(AWAITING_SHIPMENT)
+    status            OrderStatus @default(PENDING)
+    paymentMethod     String      @default("bank transfer")
+    transactionId     String? // transactionId from midtrans
+    orderNumber       String      @unique
     courierCompany    String
     courierType       String
     courierInsurance  Int

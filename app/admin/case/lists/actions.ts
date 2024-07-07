@@ -2,7 +2,6 @@
 
 import { prisma } from "@/lib/db";
 import { revalidatePath } from "next/cache";
-import { addModelSchema } from "./schema";
 import { z } from "zod";
 import { auth } from "@/auth";
 import { UserRole } from "@prisma/client";
@@ -17,36 +16,6 @@ export async function getCaseModels() {
   });
 
   return caseModels;
-}
-
-export async function createCaseModel({
-  name,
-  price,
-  url,
-}: z.infer<typeof addModelSchema>) {
-  const result = addModelSchema.safeParse({ name, price, url });
-
-  if (!result.success) {
-    throw new Error("Masukkan nama model, price upload gambar dengan benar!");
-  }
-
-  const session = await auth();
-
-  if (!session?.user.id) {
-    throw new Error("Anda belum login, silahkan login terlebih dahulu");
-  }
-
-  if (session.user.role !== UserRole.ADMIN) {
-    throw new Error("Hanya admin yang dapat melakukan aksi ini");
-  }
-
-  await prisma.caseModel.create({
-    data: {
-      name,
-      price,
-      url,
-    },
-  });
 }
 
 export async function connectCaseColorsToCaseModel(
