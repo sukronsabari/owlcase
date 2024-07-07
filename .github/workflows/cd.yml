@@ -27,5 +27,6 @@ jobs:
             source ~/.nvm/nvm.sh
             pm2 stop owlcase
             npm install
+            npx prisma generate
             node --max-old-space-size=2048 node_modules/.bin/next build
             pm2 restart owlcase

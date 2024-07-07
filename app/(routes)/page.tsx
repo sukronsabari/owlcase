@@ -27,13 +27,11 @@ export default function HomePage() {
               </div>
               <h1 className="text-5xl font-bold tracking-tight text-balance !leading-tight md:text-6xl xl:text-7xl">
                 Ciptakan{" "}
-                <span className="text-white bg-teal-600 px-2">
-                  Custom Case Unik
-                </span>{" "}
-                Anda
+                <span className="text-white bg-teal-600 px-2">Custom Case</span>{" "}
+                Unik Anda
               </h1>
               <p className="mt-8 text-lg max-w-prose text-balance md:text-wrap">
-                Ekspresikan gaya unik Anda dengan case ponsel kustom dari
+                Ekspresikan gaya unik Anda dengan case ponsel kustom dari{" "}
                 <span className="font-medium">Owlcase</span>. Pilih desain,
                 warna, dan material sesuai selera Anda dan buat case yang
                 benar-benar personal. Dengan kualitas terbaik dan ketahanan yang
