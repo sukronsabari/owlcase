@@ -20,10 +20,10 @@ interface WebhookBiteshipStatusResponse {
 
 export async function POST(req: Request) {
   try {
-    const body = (await req.json()) as WebhookBiteshipStatusResponse;
-    console.log(body);
+    const body = (await req?.json()) as WebhookBiteshipStatusResponse;
+    console.log("WEBHOOKS BITESHIP", body);
 
-    if (body.status.toLowerCase() === "delivered") {
+    if (body?.status?.toLowerCase() === "delivered") {
       if (body.order_id) {
         const findOrder = await prisma.order.findFirst({
           where: {
@@ -44,7 +44,7 @@ export async function POST(req: Request) {
           },
         });
       }
-    } else if (body.status.toLowerCase() === "picked") {
+    } else if (body?.status?.toLowerCase() === "picked") {
       const findOrder = await prisma.order.findFirst({
         where: {
           courierOrderId: body.order_id,
@@ -69,9 +69,6 @@ export async function POST(req: Request) {
   } catch (error) {
     console.error(error);
 
-    return NextResponse.json(
-      { message: "Something went wrong", ok: false },
-      { status: 500 }
-    );
+    return NextResponse.json({ ok: true });
   }
 }
