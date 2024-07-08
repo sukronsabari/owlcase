@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Providers } from "@/components/Provider";
 
 import "./globals.css";
+import "react-vertical-timeline-component/style.min.css";
 
 const font = Recursive({ subsets: ["latin"] });
 

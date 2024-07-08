@@ -120,7 +120,7 @@ export function Orders() {
                       key={idx}
                     >
                       <Skeleton className="h-44 w-24" />
-                      <div className="flex-1 text-xs relative h-44">
+                      <div className="flex-1 relative h-44">
                         <Skeleton className="h-5 w-3/4 mb-4" />
                         <Skeleton className="h-4 w-1/2 mb-1" />
                         <Skeleton className="h-4 w-1/2 mb-1" />
@@ -132,10 +132,10 @@ export function Orders() {
                   ))}
                 </div>
                 <div className="border-t border-t-gray-200 p-8">
-                  <div className="grid gap-4 grid-cols-1 text-sm lg:grid-cols-2">
+                  <div className="grid gap-4 grid-cols-1 lg:grid-cols-2">
                     <div>
                       <Skeleton className="h-5 w-24 mb-2" />
-                      <div className="text-xs mt-1">
+                      <div className="mt-1">
                         <Skeleton className="h-4 w-3/4 mb-1" />
                         <Skeleton className="h-4 w-3/4 mb-1" />
                         <Skeleton className="h-4 w-3/4 mb-1" />
@@ -143,7 +143,7 @@ export function Orders() {
                     </div>
                     <div>
                       <Skeleton className="h-5 w-24 mb-2" />
-                      <div className="text-xs mt-1">
+                      <div className="mt-1">
                         <Skeleton className="h-4 w-3/4 mb-1" />
                         <Skeleton className="h-4 w-3/4 mb-1" />
                         <Skeleton className="h-4 w-full mb-1" />
@@ -163,7 +163,7 @@ export function Orders() {
                     <div>
                       <h3 className="font-bold">#{order.orderNumber}</h3>
                       <div className="flex flex-col mt-2 lg:flex-row lg:items-center lg:space-x-8">
-                        <p className="text-xs text-muted-foreground">
+                        <p className="text-muted-foreground">
                           Order Date: {order.createdAt.toLocaleDateString()}
                         </p>
                         <div className="flex mt-4 space-x-2 lg:mt-0">
@@ -254,9 +254,9 @@ export function Orders() {
                           height={176}
                           className="h-44 w-auto"
                         />
-                        <div className="flex-1 text-xs relative h-44">
+                        <div className="flex-1 relative h-44">
                           <div className="mb-4">
-                            <h3 className="font-bold text-sm">
+                            <h3 className="font-bold">
                               {item.caseOption.caseModel.name} Case
                             </h3>
                           </div>
@@ -288,10 +288,10 @@ export function Orders() {
                     ))}
                   </div>
                   <div className="border-t border-t-gray-200 p-4 lg:p-8">
-                    <div className="grid gap-4 grid-cols-1 text-sm lg:grid-cols-2">
+                    <div className="grid gap-4 grid-cols-1 lg:grid-cols-2">
                       <div>
-                        <h3 className="font-bold text-sm">Pembayaran</h3>
-                        <div className="text-xs mt-1">
+                        <h3 className="font-bold">Pembayaran</h3>
+                        <div className="mt-1">
                           <p className="capitalize">
                             <span className="font-medium">Metode Bayar: </span>
                             {order.paymentMethod === "gopay"
