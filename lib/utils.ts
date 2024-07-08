@@ -24,6 +24,18 @@ export function constructMetadata({
       default: title,
       template: `%s | Owlcase`,
     },
+    keywords: [
+      "custom case",
+      "customcase",
+      "custom phone case",
+      "buat custom case",
+      "beli custom case",
+      "owlcase",
+      "desain custom case",
+      "phone case",
+      "casing hp",
+      "case hp",
+    ],
     description,
     openGraph: {
       title,
