@@ -9,8 +9,8 @@ export function cn(...inputs: ClassValue[]) {
 const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL!;
 
 export function constructMetadata({
-  title = "Owlcase",
-  description = "Buat custom case berkualitas tinggi dengan Owlcase. Desain case unik dan personal untuk smartphone Anda.",
+  title = "Owlcase | Buat Custom Case Dengan Mudah",
+  description = "Buat custom case berkualitas tinggi untuk smartphone Anda dengan mudah. Desain case unik dan personal dengan gambar atau teks pilihan Anda. Pilih dari berbagai jenis case seperti hard case, soft case, dan flip case. Unggah desain Anda sendiri atau pilih dari berbagai template menarik kami. Buat case dengan kualitas terbaik dan tampil beda dengan Owlcase.",
   image = "/images/thumbnail.png",
   icons = "/favicon.ico",
 }: {
