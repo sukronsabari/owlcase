@@ -4,4 +4,4 @@ Allow: /configure/upload
 Disallow: /api/
 Disallow: /admin/
 Disallow: /cart
-Sitemap: https://acme.com/sitemap.xml
+Sitemap: https://owlcase.sukronsabari.cloud/sitemap.xml
