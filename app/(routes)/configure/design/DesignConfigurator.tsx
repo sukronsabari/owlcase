@@ -155,6 +155,10 @@ export function DesignConfigurator({
       canvas.height = height;
       const ctx = canvas.getContext("2d");
 
+      // Isi canvas dengan warna yang dipilih
+      if (ctx?.fillStyle) ctx.fillStyle = selectedColor.hex;
+      ctx?.fillRect(0, 0, width, height);
+
       const userImage = new Image();
       userImage.crossOrigin = "anonymous";
       userImage.src = imageConfigUrl;

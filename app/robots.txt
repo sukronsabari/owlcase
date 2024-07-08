@@ -1,7 +1,0 @@
-User-Agent: *
-Allow: /
-Allow: /configure/upload
-Disallow: /api/
-Disallow: /admin/
-Disallow: /cart
-Sitemap: https://owlcase.sukronsabari.cloud/sitemap.xml

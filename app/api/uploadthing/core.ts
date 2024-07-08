@@ -1,8 +1,7 @@
-import { createUploadthing, type FileRouter } from "uploadthing/next";
-import { UploadThingError } from "uploadthing/server";
-import { z } from "zod";
 import sharp from "sharp";
-import { auth } from "@/auth";
+import { createUploadthing, type FileRouter } from "uploadthing/next";
+import { z } from "zod";
+
 import { prisma } from "@/lib/db";
 
 const f = createUploadthing();
@@ -13,7 +12,7 @@ export const ourFileRouter = {
   imageUploader: f({ image: { maxFileSize: "8MB", maxFileCount: 1 } })
     .input(z.object({ imageConfigId: z.string().optional() }))
     // Set permissions and file types for this FileRoute
-    .middleware(async ({ req, input }) => {
+    .middleware(async ({ input }) => {
       //   // This code runs on your server before upload
       //   const user = await auth(req);
 
@@ -58,6 +57,7 @@ export const ourFileRouter = {
     }),
   uploadCaseModelImage: f({
     image: { maxFileSize: "8MB", maxFileCount: 1 },
+    // eslint-disable-next-line no-unused-vars
   }).onUploadComplete(async ({ metadata, file }) => {
     return { url: file.url };
   }),

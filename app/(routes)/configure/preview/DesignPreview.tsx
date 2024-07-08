@@ -156,7 +156,7 @@ export function DesignPreview({ caseOption }: DesignPreviewProps) {
       </div>
 
       <LoginModal
-        callbackUrl={`/configure/preview?phoneConfigId=${caseOption.id}`}
+        callbackUrl={`/configure/preview?caseOptionId=${caseOption.id}`}
         title="Login to continue"
         description="Your configuration was saved! Please login to complete your purchase"
         isOpen={openLoginModal}
