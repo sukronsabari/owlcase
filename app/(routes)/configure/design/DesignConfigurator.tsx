@@ -227,8 +227,8 @@ export function DesignConfigurator({
           default={{
             x: 150,
             y: 205,
-            height: imageConfigDimension.height / 4,
-            width: imageConfigDimension.width / 4,
+            height: imageConfigDimension.height / 25,
+            width: imageConfigDimension.width / 25,
           }}
           lockAspectRatio
           resizeHandleComponent={{
