@@ -1,14 +1,19 @@
-import "./globals.css";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Recursive } from "next/font/google";
-import { constructMetadata } from "@/lib/utils";
 import { SessionProvider } from "next-auth/react";
+
+import { constructMetadata } from "@/lib/utils";
 import { Toaster } from "@/components/ui/toaster";
 import { Providers } from "@/components/Provider";
+
+import "./globals.css";
 
 const font = Recursive({ subsets: ["latin"] });
 
 export const metadata: Metadata = constructMetadata();
+export const viewport: Viewport = {
+  themeColor: "#ffffff",
+};
 
 export default async function RootLayout({
   children,
