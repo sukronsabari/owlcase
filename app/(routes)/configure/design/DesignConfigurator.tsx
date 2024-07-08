@@ -208,6 +208,7 @@ export function DesignConfigurator({
               alt="phone image"
               className="pointer-events-none z-[49] select-none"
               fill
+              priority
             />
           </AspectRatio>
           {/* shadow and overlays out of phone like transparent */}
@@ -253,6 +254,7 @@ export function DesignConfigurator({
               fill
               alt="your image"
               className="pointer-events-none"
+              priority
             />
           </div>
         </Rnd>

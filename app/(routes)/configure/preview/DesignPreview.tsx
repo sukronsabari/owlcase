@@ -63,7 +63,7 @@ export function DesignPreview({ caseOption }: DesignPreviewProps) {
   const { mutate: addToCart } = useMutation({
     mutationKey: ["add-to-cart-action"],
     mutationFn: async ({ caseOptionId }: { caseOptionId: string }) =>
-      addToCartAction(caseOptionId),
+      await addToCartAction(caseOptionId),
     onMutate: async ({ caseOptionId }) => {
       await queryClient.cancelQueries({ queryKey: ["cart-count"] });
       const previousCart = queryClient.getQueryData<CartWithItem>([
