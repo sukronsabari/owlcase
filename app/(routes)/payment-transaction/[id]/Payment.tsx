@@ -91,6 +91,12 @@ export function Payment({
 
   const expiryTime = transactionStatus.expiry_time; // GMT+7
 
+  const copyToClipboard = async (vaNumber: string) => {
+    if (vaNumber) {
+      await navigator.clipboard.writeText(vaNumber);
+    }
+  };
+
   const calculateTimeLeft = useCallback(() => {
     const expiryDate = convertWibToUnixTimestamp(expiryTime);
     const currentDate = new Date().getTime();
@@ -174,11 +180,16 @@ export function Payment({
             <div className="ml-8 pt-3 border-t border-t-gray-200">
               <p className="text-xs">No. Rekening Virtual: </p>
               <div className="flex justify-between items-center">
-                {transactionStatus!.va_numbers![0]!.va_number}
+                <p>{transactionStatus!.va_numbers![0]!.va_number}</p>
                 <Button
                   variant="ghost"
                   size="sm"
                   className="text-teal-600 hover:text-teal-600"
+                  onClick={() =>
+                    copyToClipboard(
+                      transactionStatus!.va_numbers![0]!.va_number
+                    )
+                  }
                 >
                   SALIN
                 </Button>
